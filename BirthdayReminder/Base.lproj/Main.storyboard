@@ -1,25 +1,296 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="feh-d6-xjf">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--class Prefix:identifier View Controller-->
+        <!--Birthdays-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="BRViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
+                <viewController id="vXZ-lx-hvc" customClass="BRHomeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EBZ-ns-VGn">
+                                <rect key="frame" x="36" y="269" width="248" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Push Birthday Detail View Controller">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jXV-3L-KK0" kind="push" id="10W-Ic-EPS"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="v0n-R5-LM3"/>
+                        <barButtonItem title="Address Book" id="eL5-Dp-Sv6"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="lHt-G9-Aqr"/>
+                        <barButtonItem title="Facebook" id="Qdl-2z-qTZ"/>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Jvq-Dg-AFG"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Birthdays" id="aeP-MS-Udr">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="t67-YW-wpr">
+                            <connections>
+                                <segue destination="53T-Hi-1dU" kind="modal" modalTransitionStyle="flipHorizontal" id="Fhd-pQ-Idz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add Birthday" id="PU0-be-qDZ">
+                            <connections>
+                                <segue destination="AXy-eF-rdk" kind="modal" id="WVz-J0-xj2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="988" y="334"/>
+        </scene>
+        <!--Edit Birthday-->
+        <scene sceneID="ayT-rD-Wf2">
+            <objects>
+                <viewController title="Edit Birthday" id="LjJ-7G-qQi" customClass="BRBirthdayEditViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aZA-Hh-5B7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="MzP-K2-im0">
+                                <rect key="frame" x="83" y="80" width="221" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3P3-ht-sU6">
+                                <rect key="frame" x="125" y="225" width="99" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="JwK-Qr-O2Q">
+                                <rect key="frame" x="255" y="225" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </switch>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="xHi-Fn-9jc">
+                                <rect key="frame" x="0.0" y="265" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="459529706.56270498">
+                                    <!--2015-07-25 15:08:26 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Birthday" id="NZK-zS-UMh">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jKn-bx-eit">
+                            <connections>
+                                <action selector="cancelAndDismiss:" destination="LjJ-7G-qQi" id="G7b-ac-HcK"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="smT-Dr-C0x">
+                            <connections>
+                                <action selector="saveAndDismiss:" destination="LjJ-7G-qQi" id="CcY-22-Bfh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="xHi-Fn-9jc" id="RC8-0I-IBz"/>
+                        <outlet property="includeYearLabel" destination="3P3-ht-sU6" id="QZg-Rz-YuL"/>
+                        <outlet property="includeYearSwitch" destination="JwK-Qr-O2Q" id="RI2-BT-u9W"/>
+                        <outlet property="nameTextField" destination="MzP-K2-im0" id="Cf1-CC-7Dh"/>
+                        <outlet property="saveButton" destination="smT-Dr-C0x" id="K8w-N7-tS3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R2m-xM-ttw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1876" y="1045"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="oso-k0-nTC">
+            <objects>
+                <viewController title="Settings" id="ZgX-aH-D6K" customClass="BRSettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IRy-NX-TRj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hgf-hR-ToL">
+                                <rect key="frame" x="112" y="269" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Set Alert Time">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="RmU-Yf-j70" kind="push" id="6k3-bM-fIJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="KYi-Qi-Fms">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="hfA-3l-xJ9">
+                            <connections>
+                                <action selector="saveAndDismiss:" destination="ZgX-aH-D6K" id="Nfk-BO-8ff"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dgf-8e-gc0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1876" y="-345"/>
+        </scene>
+        <!--Alert Time-->
+        <scene sceneID="deM-po-ah5">
+            <objects>
+                <viewController title="Alert Time" id="RmU-Yf-j70" customClass="BRNotificationTimeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Sj-gB-yZd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Alert Time" id="qhT-BC-YOG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xcc-A7-U0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2408" y="-345"/>
+        </scene>
+        <!--Birthday Details-->
+        <scene sceneID="iIS-5P-5mN">
+            <objects>
+                <viewController hidesBottomBarWhenPushed="YES" id="jXV-3L-KK0" customClass="BRBirthdayDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vnf-tE-1Bp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FGs-zq-ARp">
+                                <rect key="frame" x="201" y="269" width="72" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit Notes">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="4sQ-JN-m8m" kind="modal" id="JHR-ox-CWP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Birthday Details" id="QZj-84-bFu">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="71E-Q3-xKJ">
+                            <connections>
+                                <segue destination="AXy-eF-rdk" kind="modal" id="lmX-mm-dQr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cNL-QH-kOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1404" y="334"/>
+        </scene>
+        <!--Edit Notes-->
+        <scene sceneID="nzX-tk-RsO">
+            <objects>
+                <viewController title="Edit Notes" id="eSI-g8-N7j" customClass="BRNotesEditViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pac-J0-WM3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Notes" id="4n5-S9-eLg">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="tXd-lU-4hY">
+                            <connections>
+                                <action selector="cancelAndDismiss:" destination="eSI-g8-N7j" id="giM-9U-rXa"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="j7u-Me-d4G">
+                            <connections>
+                                <action selector="saveAndDismiss:" destination="eSI-g8-N7j" id="qwl-8S-fBd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BRz-5w-Jkl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2408" y="334"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="JyK-3N-lcG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="feh-d6-xjf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G32-Go-In4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="thE-A6-b76">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="KrQ-rm-EKt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZTH-bi-iTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="575" y="334"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GoL-dO-Etg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AXy-eF-rdk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OPW-1n-UUw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="LjJ-7G-qQi" kind="relationship" relationship="rootViewController" id="I5g-TW-d24"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CM3-Dw-SUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1404" y="1045"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7JG-Bm-hQv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4sQ-JN-m8m" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uaz-zP-y3o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eSI-g8-N7j" kind="relationship" relationship="rootViewController" id="X4T-TQ-Ek7"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="446-i2-xyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1876" y="334"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4Sg-AL-baD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="53T-Hi-1dU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="daL-wD-IZO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZgX-aH-D6K" kind="relationship" relationship="rootViewController" id="juT-ay-tJt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yoi-7v-i1u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1404" y="-345"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -27,4 +298,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="WVz-J0-xj2"/>
+    </inferredMetricsTieBreakers>
 </document>
