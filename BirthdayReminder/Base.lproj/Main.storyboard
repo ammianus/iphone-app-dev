@@ -59,11 +59,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" id="MzP-K2-im0">
-                                <rect key="frame" x="83" y="80" width="221" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" clearButtonMode="whileEditing" id="MzP-K2-im0">
+                                <rect key="frame" x="89" y="80" width="221" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="no"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="didChangeNameText:" destination="LjJ-7G-qQi" eventType="editingChanged" id="828-n0-XiW"/>
+                                    <outlet property="delegate" destination="LjJ-7G-qQi" id="YKU-rj-Y8r"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include Year" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3P3-ht-sU6">
                                 <rect key="frame" x="125" y="225" width="99" height="27"/>
@@ -75,14 +79,48 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="JwK-Qr-O2Q">
                                 <rect key="frame" x="255" y="225" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="didToggleSwitch:" destination="LjJ-7G-qQi" eventType="valueChanged" id="gr5-iv-mI6"/>
+                                </connections>
                             </switch>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="xHi-Fn-9jc">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" id="xHi-Fn-9jc">
                                 <rect key="frame" x="0.0" y="265" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <date key="date" timeIntervalSinceReferenceDate="459529706.56270498">
                                     <!--2015-07-25 15:08:26 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="didChangeDatePicker:" destination="LjJ-7G-qQi" eventType="valueChanged" id="WUM-Hg-hXU"/>
+                                </connections>
                             </datePicker>
+                            <view contentMode="scaleToFill" id="OpT-X1-VQk" userLabel="Photo Container View">
+                                <rect key="frame" x="10" y="80" width="71" height="71"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail-background.png" id="w1V-S2-mH7">
+                                        <rect key="frame" x="0.0" y="0.0" width="71" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-birthday-cake.png" id="vai-cH-6du">
+                                        <rect key="frame" x="0.0" y="0.0" width="71" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pic Photo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BC2-cb-nht">
+                                        <rect key="frame" x="0.0" y="56" width="71" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="nD0-kt-7qf" appends="YES" id="yQL-Hg-7M5"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -103,12 +141,20 @@
                         <outlet property="includeYearLabel" destination="3P3-ht-sU6" id="QZg-Rz-YuL"/>
                         <outlet property="includeYearSwitch" destination="JwK-Qr-O2Q" id="RI2-BT-u9W"/>
                         <outlet property="nameTextField" destination="MzP-K2-im0" id="Cf1-CC-7Dh"/>
+                        <outlet property="photoContainerView" destination="OpT-X1-VQk" id="OZ5-kc-ZC6"/>
+                        <outlet property="photoView" destination="vai-cH-6du" id="q2n-2b-3eG"/>
+                        <outlet property="picPhotoLabel" destination="BC2-cb-nht" id="UUg-M6-3j0"/>
                         <outlet property="saveButton" destination="smT-Dr-C0x" id="K8w-N7-tS3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R2m-xM-ttw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="nD0-kt-7qf">
+                    <connections>
+                        <action selector="didTapPhoto:" destination="LjJ-7G-qQi" id="4lL-td-ntr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1876" y="1045"/>
+            <point key="canvasLocation" x="1913" y="1045"/>
         </scene>
         <!--Settings-->
         <scene sceneID="oso-k0-nTC">
@@ -150,9 +196,32 @@
                     <view key="view" contentMode="scaleToFill" id="7Sj-gB-yZd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What time of day do you want your Birthday Reminders?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tCy-T6-kvU">
+                                <rect key="frame" x="20" y="80" width="280" height="87"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" id="8oh-Hy-LBT">
+                                <rect key="frame" x="0.0" y="235" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="459544156.97931701">
+                                    <!--2015-07-25 19:09:16 +0000-->
+                                </date>
+                                <connections>
+                                    <action selector="didChangeTime:" destination="RmU-Yf-j70" eventType="valueChanged" id="5VD-aC-mkB"/>
+                                </connections>
+                            </datePicker>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Alert Time" id="qhT-BC-YOG"/>
+                    <connections>
+                        <outlet property="timePicker" destination="8oh-Hy-LBT" id="jLL-g6-hUT"/>
+                        <outlet property="whatTimeLabel" destination="tCy-T6-kvU" id="3z7-Va-hJd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcc-A7-U0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -198,6 +267,18 @@
                     <view key="view" contentMode="scaleToFill" id="Pac-J0-WM3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="WDy-jV-bNz">
+                                <rect key="frame" x="0.0" y="70" width="320" height="190"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="eSI-g8-N7j" id="719-Ev-3Ra"/>
+                                </connections>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Notes" id="4n5-S9-eLg">
@@ -212,6 +293,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="j7u-Me-d4G" id="IVh-WK-cRW"/>
+                        <outlet property="textView" destination="WDy-jV-bNz" id="V0x-oN-GDw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BRz-5w-Jkl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -293,6 +378,10 @@
             <point key="canvasLocation" x="1404" y="-345"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-birthday-cake.png" width="55" height="55"/>
+        <image name="thumbnail-background.png" width="71" height="71"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

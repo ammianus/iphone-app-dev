@@ -34,4 +34,17 @@
 }
 */
 
+#pragma mark Actions
+
+/**
+ * Action for timePicker value change
+ */
+- (IBAction)didChangeTime:(id)sender {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:self.timePicker.date];
+    
+    NSLog(@"Changed time to %d:%d",components.hour,components.minute);
+    
+    
+    
+}
 @end

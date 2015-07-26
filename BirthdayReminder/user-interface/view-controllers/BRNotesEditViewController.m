@@ -14,6 +14,8 @@
 
 @implementation BRNotesEditViewController
 
+#pragma mark UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -24,6 +26,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ * Make sure the Text View keyboard is onscreen when the view is loaded.
+ * @param animated
+ */
+- (void) viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    [self.textView becomeFirstResponder];
+}
+
+
 /*
 #pragma mark - Navigation
 
@@ -33,5 +46,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark UITextViewDelegate
+
+- (void) textViewDidChange:(UITextView *)textView{
+    NSLog(@"User changed the notes text: %@", self.textView.text);
+}
 
 @end

@@ -8,6 +8,8 @@
 
 #import "BRCoreViewController.h"
 
-@interface BRNotesEditViewController : BRCoreViewController
+@interface BRNotesEditViewController : BRCoreViewController <UITextViewDelegate>
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 @end
