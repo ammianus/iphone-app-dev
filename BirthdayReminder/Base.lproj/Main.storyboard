@@ -93,7 +93,7 @@
                                     <action selector="didChangeDatePicker:" destination="LjJ-7G-qQi" eventType="valueChanged" id="WUM-Hg-hXU"/>
                                 </connections>
                             </datePicker>
-                            <view contentMode="scaleToFill" id="OpT-X1-VQk" userLabel="Photo Container View">
+                            <view clipsSubviews="YES" contentMode="scaleAspectFill" id="OpT-X1-VQk" userLabel="Photo Container View">
                                 <rect key="frame" x="10" y="80" width="71" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -143,6 +143,7 @@
                         <outlet property="nameTextField" destination="MzP-K2-im0" id="Cf1-CC-7Dh"/>
                         <outlet property="photoContainerView" destination="OpT-X1-VQk" id="OZ5-kc-ZC6"/>
                         <outlet property="photoView" destination="vai-cH-6du" id="q2n-2b-3eG"/>
+                        <outlet property="picBackground" destination="w1V-S2-mH7" id="geU-bn-GX8"/>
                         <outlet property="picPhotoLabel" destination="BC2-cb-nht" id="UUg-M6-3j0"/>
                         <outlet property="saveButton" destination="smT-Dr-C0x" id="K8w-N7-tS3"/>
                     </connections>
