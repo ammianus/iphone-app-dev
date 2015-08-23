@@ -28,6 +28,7 @@
 		C5B6DFF11B5B144A009C89E6 /* BRNotesEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFF01B5B144A009C89E6 /* BRNotesEditViewController.m */; };
 		C5B6DFF41B5B1576009C89E6 /* BRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFF31B5B1576009C89E6 /* BRSettingsViewController.m */; };
 		C5B6DFF71B5B164C009C89E6 /* BRNotificationTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFF61B5B164C009C89E6 /* BRNotificationTimeViewController.m */; };
+		C5DF58A91B8A18BB0000A51C /* birthdays.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5DF58A81B8A18BB0000A51C /* birthdays.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		C5B6DFF31B5B1576009C89E6 /* BRSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSettingsViewController.m; sourceTree = "<group>"; };
 		C5B6DFF51B5B164C009C89E6 /* BRNotificationTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRNotificationTimeViewController.h; sourceTree = "<group>"; };
 		C5B6DFF61B5B164C009C89E6 /* BRNotificationTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRNotificationTimeViewController.m; sourceTree = "<group>"; };
+		C5DF58A81B8A18BB0000A51C /* birthdays.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = birthdays.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				C51CACBF193AA8DB00C49846 /* files */,
 				C51CAC7B193AA29D00C49846 /* BirthdayReminder-Info.plist */,
+				C5DF58A81B8A18BB0000A51C /* birthdays.plist */,
 				C51CAC7C193AA29D00C49846 /* InfoPlist.strings */,
 				C51CAC7F193AA29D00C49846 /* main.m */,
 				C51CAC81193AA29D00C49846 /* BirthdayReminder-Prefix.pch */,
@@ -270,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5DF58A91B8A18BB0000A51C /* birthdays.plist in Resources */,
 				C51CACC0193AA8DB00C49846 /* files in Resources */,
 				C51CAC8C193AA29D00C49846 /* Images.xcassets in Resources */,
 				C51CAC7E193AA29D00C49846 /* InfoPlist.strings in Resources */,

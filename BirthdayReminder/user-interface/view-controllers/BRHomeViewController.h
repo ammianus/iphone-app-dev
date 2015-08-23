@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "BRCoreViewController.h"
 
-@interface BRHomeViewController : BRCoreViewController
+@interface BRHomeViewController : BRCoreViewController <UITableViewDelegate, UITableViewDataSource>
 
 /**
  * @param segue to unwind
  */
 -(IBAction)unwindActionMethodName:(UIStoryboardSegue *) segue;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

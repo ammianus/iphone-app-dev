@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
 @property (weak, nonatomic) IBOutlet UILabel *picPhotoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *picBackground;
+@property (nonatomic,strong) NSMutableDictionary *birthday;
 
 - (IBAction)didChangeNameText:(id)sender;
 - (IBAction)didToggleSwitch:(id)sender;

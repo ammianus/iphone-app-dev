@@ -10,5 +10,6 @@
 #import "BRCoreViewController.h"
 
 @interface BRBirthdayDetailViewController : BRCoreViewController
-
+@property (weak, nonatomic) IBOutlet UIImageView *photoView;
+@property (nonatomic,strong) NSMutableDictionary *birthday;
 @end
