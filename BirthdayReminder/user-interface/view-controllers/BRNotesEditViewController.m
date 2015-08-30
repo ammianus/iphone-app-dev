@@ -7,6 +7,8 @@
 //
 
 #import "BRNotesEditViewController.h"
+#import "BRDBirthday.h"
+#import "BRDModel.h"
 
 @interface BRNotesEditViewController ()
 
@@ -33,9 +35,19 @@
 - (void) viewWillAppear:(BOOL)animated {
 
     [super viewWillAppear:animated];
+    self.textView.text = self.birthday.notes;
     [self.textView becomeFirstResponder];
 }
 
+-(IBAction)cancelAndDismiss:(id)sender{
+    [[BRDModel sharedInstance] cancelChanges];
+    [super cancelAndDismiss:sender];
+}
+
+-(IBAction)saveAndDismiss:(id)sender{
+    [[BRDModel sharedInstance] saveChanges];
+    [super saveAndDismiss:sender];
+}
 
 /*
 #pragma mark - Navigation
@@ -51,6 +63,7 @@
 
 - (void) textViewDidChange:(UITextView *)textView{
     NSLog(@"User changed the notes text: %@", self.textView.text);
+    self.birthday.notes = self.textView.text;
 }
 
 @end

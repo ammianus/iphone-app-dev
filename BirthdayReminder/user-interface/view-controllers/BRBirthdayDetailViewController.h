@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BRCoreViewController.h"
+@class BRDBirthday;
 
 @interface BRBirthdayDetailViewController : BRCoreViewController
 @property (weak, nonatomic) IBOutlet UIImageView *photoView;
-@property (nonatomic,strong) NSMutableDictionary *birthday;
+@property (nonatomic,strong) BRDBirthday *birthday;
 @end

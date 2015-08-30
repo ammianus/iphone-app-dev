@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BRCoreViewController.h"
 
-@interface BRHomeViewController : BRCoreViewController <UITableViewDelegate, UITableViewDataSource>
+@interface BRHomeViewController : BRCoreViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 /**
  * @param segue to unwind

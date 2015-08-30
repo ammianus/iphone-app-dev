@@ -8,6 +8,8 @@
 
 #import "BRBirthdayDetailViewController.h"
 #import "BRBirthdayEditViewController.h"
+#import "BRNotesEditViewController.h"
+#import "BRDBirthday.h"
 
 // When overriding UIViewController methods be sure to call the super method
 // implementation to avoid problems at runtime
@@ -47,10 +49,9 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSLog(@"viewWillAppear");
-    
-    NSString *name = self.birthday[@"name"];
-    self.title = name;
-    UIImage *image = self.birthday[@"image"];
+
+    self.title = self.birthday.name;
+    UIImage *image = [UIImage imageWithData:self.birthday.imageData];
     if(image == nil){
         //default to birthday cake pic if there's no birthday image
         self.photoView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
@@ -104,6 +105,11 @@
         
         BRBirthdayEditViewController *birthdayEditViewController = (BRBirthdayEditViewController *) navigationController.topViewController;
         birthdayEditViewController.birthday = self.birthday;
+    }else if([identifier isEqualToString:@"EditNotes"]){
+        //Edit this birthday
+        UINavigationController *navigationController = segue.destinationViewController;
+        BRNotesEditViewController *birthdayNotesEditViewController = (BRNotesEditViewController *) navigationController.topViewController;
+        birthdayNotesEditViewController.birthday = self.birthday;
     }
 }
 

@@ -9,10 +9,12 @@
 #import "BRHomeViewController.h"
 #import "BRBirthdayDetailViewController.h"
 #import "BRBirthdayEditViewController.h"
+#import "BRDBirthday.h"
+#import "BRDModel.h"
 
 @interface BRHomeViewController ()
 //Data reference
-@property (nonatomic,strong) NSMutableArray *birthdays;
+@property (nonatomic,strong) NSFetchedResultsController *fetchedResultsController;
 @end
 
 @implementation BRHomeViewController
@@ -43,32 +45,60 @@
         NSString* pListPath = [[NSBundle mainBundle] pathForResource:@"birthdays" ofType:@"plist"];
         NSArray *nonMutableBirthdays = [NSArray arrayWithContentsOfFile:pListPath];
         
-        self.birthdays = [NSMutableArray array];
         
-        NSMutableDictionary *birthday;
+        
+        BRDBirthday *birthday;
         NSDictionary *dictionary;
         NSString *name;
         NSString *pic;
-        UIImage *image;
+        NSString *pathForPic;
+        NSData *imageData;
         NSDate *birthdate;
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        
+        NSString *uid;
+        NSMutableArray *uids = [NSMutableArray array];
+        for(int i=0;i<[nonMutableBirthdays count];i++){
+            dictionary = [nonMutableBirthdays objectAtIndex:i];
+            uid = dictionary[@"name"];
+            [uids addObject:uid];
+        }
+        NSMutableDictionary *existingEntities = [[BRDModel sharedInstance] getExistingBirthdaysWithUIDs:uids];
+        
+        NSManagedObjectContext *context = [BRDModel sharedInstance].managedObjectContext;
         
         for (int i=0; i<[nonMutableBirthdays count]; i++) {
             dictionary = [nonMutableBirthdays objectAtIndex:i];
+            
+            uid = dictionary[@"name"];
+            
+            birthday = existingEntities[uid];
+            
+            if(birthday){
+                //birthday already exists
+            }else{
+                birthday = [NSEntityDescription insertNewObjectForEntityForName:@"BRDBirthday" inManagedObjectContext:context];
+                existingEntities[uid] = birthday;
+                birthday.uid = uid;
+            }
             name = dictionary[@"name"];
             pic = dictionary[@"pic"];
-            image = [UIImage imageNamed:pic];
-            //TODO what if the image is nil? getting error
-            if(image == nil){
-                image = [UIImage imageNamed:@"icon-birthdat-cake.png"];
-            }
+            pathForPic = [[NSBundle mainBundle] pathForResource:pic ofType:nil];
+            imageData = [NSData dataWithContentsOfFile:pathForPic];
             birthdate = dictionary[@"birthdate"];
-            birthday = [NSMutableDictionary dictionary];
-            birthday[@"name"] = name;
-            birthday[@"image"] = image;
-            birthday[@"birthdate"] = birthdate;
+            birthday.name = name;
+            birthday.imageData = imageData;
             
-            [self.birthdays addObject:birthday];
+            NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:birthdate];
+            //new literals sysntax, same as
+            //birthday.birthDay = [[NSNumber numberWithInt:components.day];
+            birthday.birthDay = @(components.day);
+            birthday.birthMonth = @(components.month);
+            birthday.birthYear = @(components.year);
+            [birthday updateNextBirthdayAndAge];
+            
         }
+        [[BRDModel sharedInstance] saveChanges];
     }
     return self;
 }
@@ -78,21 +108,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-    NSMutableDictionary *birthday = self.birthdays[indexPath.row];
+    BRDBirthday *birthday = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    NSString *name = birthday[@"name"];
-    NSDate *birthdate = birthday[@"birthdate"];
-    UIImage *image = birthday[@"image"];
-    
-    cell.textLabel.text = name;
-    cell.detailTextLabel.text = birthdate.description;
-    cell.imageView.image = image;
+    cell.textLabel.text = birthday.name;
+    cell.detailTextLabel.text = birthday.birthdayTextToDisplay;
+    cell.imageView.image = [UIImage imageWithData:birthday.imageData];
     
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.birthdays count];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections]objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 #pragma mark UITableViewDelegate
@@ -108,26 +135,65 @@
     if([identifier isEqualToString:@"BirthdayDetail"]){
         //First get the data
         NSIndexPath *selectedIndePath = self.tableView.indexPathForSelectedRow;
-        NSMutableDictionary *birthday = self.birthdays[selectedIndePath.row];
+        BRDBirthday *birthday = [self.fetchedResultsController objectAtIndexPath:selectedIndePath];
         
         BRBirthdayDetailViewController *birthdayDetailViewController = segue.destinationViewController;
         birthdayDetailViewController.birthday = birthday;
     }else if([identifier isEqualToString:@"AddBirthday"]){
         //Add a new birthday dictionary to the array of birthdays
-        
-        NSMutableDictionary *birthday = [NSMutableDictionary dictionary];
-        
-        birthday[@"name"] = @"My Friend";
-        birthday[@"birthdate"] = [NSDate date];
-        
-        [self.birthdays addObject:birthday];
+        NSManagedObjectContext *context = [BRDModel sharedInstance].managedObjectContext;
+        BRDBirthday *birthday = [NSEntityDescription insertNewObjectForEntityForName:@"BRDBirthday" inManagedObjectContext:context];
+        [birthday updateWithDefaults];
         
         UINavigationController *navigationController = segue.destinationViewController;
         
         BRBirthdayEditViewController *birthdayEditViewController = (BRBirthdayEditViewController *) navigationController.topViewController;
         birthdayEditViewController.birthday = birthday;
     }
+}
+
+#pragma mark Fetched Results Controller to keep track of the Core Data BRDBirthday managed objects
+
+-(NSFetchedResultsController *)fetchedResultsController{
     
+    if(_fetchedResultsController==nil){
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        
+        //access the single managed object context through model singleton
+        NSManagedObjectContext *context = [BRDModel sharedInstance].managedObjectContext;
+        
+        //fetch request requires entity description - we're only interested in BRDBirthday managed objects
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"BRDBirthday" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        //auto-generated block
+        // Specify criteria for filtering which objects to fetch
+        //NSPredicate *predicate = [NSPredicate predicateWithFormat:@"format string", arguments];
+        //[fetchRequest setPredicate:predicate];
+        
+        // Specify how the fetched objects should be sorted
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nextBirthday"
+                                                                       ascending:YES];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+        
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
+        self.fetchedResultsController.delegate = self;
+        
+        
+        NSError *error = nil;
+        
+        if (![self.fetchedResultsController performFetch:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    
+    return _fetchedResultsController;
+}
+
+#pragma mark NSFetchedResultsControllerDelegate
+
+-(void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
+    //the fetched results changed
 }
 
 @end

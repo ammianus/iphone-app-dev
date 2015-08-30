@@ -7,6 +7,9 @@
 //
 
 #import "BRBirthdayEditViewController.h"
+#import "BRDBirthday.h"
+#import "BRDModel.h"
+#import "UIImage+Thumbnail.h"
 
 
 @interface BRBirthdayEditViewController ()
@@ -33,22 +36,40 @@
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    NSString *name = self.birthday[@"name"];
-    NSDate *birthdate = self.birthday[@"birthdate"];
-    UIImage *image = self.birthday[@"image"];
+    self.nameTextField.text = self.birthday.name;
     
-    self.nameTextField.text = name;
-    self.datePicker.date = birthdate;
-    if(image == nil){
-        //default to birthday cake pic there's no birthday image
-        self.photoView.image = [UIImage imageNamed:@"icon-birthdat-cake.png"];
-    }else {
-        self.photoView.image = image;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
+    
+    if([self.birthday.birthDay intValue] > 0) components.day = [self.birthday.birthDay intValue];
+    if([self.birthday.birthMonth intValue] > 0) components.month = [self.birthday.birthMonth intValue];
+    if([self.birthday.birthYear intValue] > 0) {
+        components.year = [self.birthday.birthYear intValue];
+        self.includeYearSwitch.on = YES;
+    }else{
+        self.includeYearSwitch.on = NO;
+    }
+    [self.birthday updateNextBirthdayAndAge];
+    self.datePicker.date = [calendar dateFromComponents:components];
+    
+    if(self.birthday.imageData == nil){
+        self.photoView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+    }else{
+        self.photoView.image = [UIImage imageWithData:self.birthday.imageData];
     }
     
     [self updateSaveButton];
 }
 
+-(IBAction)saveAndDismiss:(id)sender{
+    [[BRDModel sharedInstance] saveChanges];
+    [super saveAndDismiss:sender];
+}
+
+-(IBAction)cancelAndDismiss:(id)sender{
+    [[BRDModel sharedInstance] cancelChanges];
+    [super cancelAndDismiss:sender];
+}
 
 /*
 #pragma mark - Navigation
@@ -80,7 +101,7 @@
  */
 - (IBAction)didChangeNameText:(id)sender {
     NSLog(@"The text was changed: %@",self.nameTextField.text);
-    self.birthday[@"name"] = self.nameTextField.text;
+    self.birthday.name = self.nameTextField.text;
     [self updateSaveButton];
 }
 
@@ -94,6 +115,7 @@
     }else{
         NSLog(@"Include Year Switch OFF");
     }
+    [self updateBirthdayDetails];
 }
 
 /**
@@ -102,7 +124,7 @@
  */
 - (IBAction)didChangeDatePicker:(id)sender {
     NSLog(@"New Birthdate Selected: %@",self.datePicker.date);
-    self.birthday[@"birthdate"] = self.datePicker.date;
+    [self updateBirthdayDetails];
 }
 
 /**
@@ -155,6 +177,19 @@
     [self.navigationController presentViewController:self.imagePicker animated:YES completion:nil ];
 }
 
+-(void)updateBirthdayDetails {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:self.datePicker.date];
+    self.birthday.birthMonth = @(components.month);
+    self.birthday.birthDay = @(components.day);
+    if(self.includeYearSwitch.on) {
+        self.birthday.birthYear = @(components.year);
+    }else{
+        self.birthday.birthYear = @0;
+    }
+    [self.birthday updateNextBirthdayAndAge];
+}
+
 #pragma mark UIActionSheetDelegate
 
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -178,11 +213,18 @@
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [picker dismissViewControllerAnimated:YES completion:nil];
     
+    
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     
-    self.photoView.image = image;
+    CGFloat side = 71.f;
+    side *= [[UIScreen mainScreen] scale];
     
-    self.birthday[@"image"] = image;
+    UIImage *thumbnail = [image createThumbnailToFillSize:CGSizeMake(side,side)];
+    
+    self.photoView.image = thumbnail;
+    
+    self.birthday.imageData = UIImageJPEGRepresentation (thumbnail,1.f);
+    
 }
 
 
