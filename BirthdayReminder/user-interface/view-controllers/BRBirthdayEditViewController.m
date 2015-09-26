@@ -10,6 +10,7 @@
 #import "BRDBirthday.h"
 #import "BRDModel.h"
 #import "UIImage+Thumbnail.h"
+#import "BRStyleSheet.h"
 
 
 @interface BRBirthdayEditViewController ()
@@ -26,6 +27,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [BRStyleSheet styleLabel:self.includeYearLabel withType:BRLabelTypeLarge];
+    [BRStyleSheet styleRoundCorneredView:self.photoContainerView];
+    //[BRStyleSheet styleLabel:self.datePicker. withType:(BRLabelType)]
+    //Thanks IOS7 default behavior is the date picker has transparent background and dark text
+    self.datePicker.backgroundColor = [UIColor whiteColor];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="feh-d6-xjf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="feh-d6-xjf">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Birthdays-->
@@ -14,32 +14,62 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="22" sectionFooterHeight="22" id="0qE-un-Eo1">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="584"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="Hsl-O4-kuk" detailTextLabel="NPB-8j-HvZ" style="IBUITableViewCellStyleSubtitle" id="ALa-iM-Pt4">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="ALa-iM-Pt4" userLabel="Birthday Table View Cell" customClass="BRBirthdayTableViewCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ALa-iM-Pt4" id="xid-4I-gCI">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="71.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="71.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hsl-O4-kuk">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="RkE-Kz-1pa" userLabel="iconView">
+                                                    <rect key="frame" x="11" y="13" width="52" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-days-remaining" id="Ujn-z7-JrA" userLabel="remainingDaysImageView">
+                                                    <rect key="frame" x="260" y="14" width="48" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Irk-ZF-zzr">
+                                                    <rect key="frame" x="76" y="22" width="177" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NPB-8j-HvZ">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitrhday label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rSb-G7-aOx" userLabel="Birthday label">
+                                                    <rect key="frame" x="76" y="43" width="177" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining days sublabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xVP-aA-T84" userLabel="Remaining days sublabel">
+                                                    <rect key="frame" x="262" y="45" width="51" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining days count label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zdv-3o-09J" userLabel="Remaining days count label">
+                                                    <rect key="frame" x="260" y="29" width="48" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="birthdayLabel" destination="rSb-G7-aOx" id="SmW-Jl-aa5"/>
+                                            <outlet property="iconView" destination="RkE-Kz-1pa" id="MPl-C8-i7a"/>
+                                            <outlet property="nameLabel" destination="Irk-ZF-zzr" id="gKq-1f-mkB"/>
+                                            <outlet property="remainingDaysImageView" destination="Ujn-z7-JrA" id="aY0-Uh-uCT"/>
+                                            <outlet property="remainingDaysLabel" destination="Zdv-3o-09J" id="h1l-qG-TfY"/>
+                                            <outlet property="remainingDaysSubTextLabel" destination="xVP-aA-T84" id="Sv1-a9-fRq"/>
                                             <segue destination="jXV-3L-KK0" kind="push" identifier="BirthdayDetail" id="Jrg-7h-itF"/>
                                         </connections>
                                     </tableViewCell>
@@ -49,29 +79,71 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="DMZ-VB-P0Q"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" id="eww-uq-2Os" userLabel="Subview">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="372"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Import Birthdays from..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ttO-a6-eFZ">
+                                        <rect key="frame" x="14" y="92" width="293" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BNg-Ai-aTN" customClass="BRBlueButton">
+                                        <rect key="frame" x="7" y="127" width="307" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Address Book" image="icon-addressbook.png"/>
+                                        <connections>
+                                            <action selector="importFromAddressBookTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PpH-L8-Dm4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eTz-44-BbM" customClass="BRBlueButton">
+                                        <rect key="frame" x="7" y="202" width="307" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Facebook" image="icon-facebook.png"/>
+                                        <connections>
+                                            <action selector="importFromFacebookTapped:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="b9g-qg-wAx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="v0n-R5-LM3"/>
-                        <barButtonItem title="Address Book" id="eL5-Dp-Sv6"/>
+                        <barButtonItem title="Address Book" id="eL5-Dp-Sv6">
+                            <connections>
+                                <action selector="importFromAddressBookTapped:" destination="vXZ-lx-hvc" id="NYW-jp-vz5"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="lHt-G9-Aqr"/>
-                        <barButtonItem title="Facebook" id="Qdl-2z-qTZ"/>
+                        <barButtonItem title="Facebook" id="Qdl-2z-qTZ">
+                            <connections>
+                                <action selector="importFromFacebookTapped:" destination="vXZ-lx-hvc" id="k0f-n9-QKv"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Jvq-Dg-AFG"/>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Birthdays" id="aeP-MS-Udr">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="t67-YW-wpr">
+                        <barButtonItem key="leftBarButtonItem" image="icon-settings.png" style="plain" id="t67-YW-wpr">
                             <connections>
                                 <segue destination="53T-Hi-1dU" kind="modal" modalTransitionStyle="flipHorizontal" id="Fhd-pQ-Idz"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add Birthday" id="PU0-be-qDZ">
+                        <barButtonItem key="rightBarButtonItem" image="icon-add-new.png" id="PU0-be-qDZ">
                             <connections>
                                 <segue destination="AXy-eF-rdk" kind="modal" identifier="AddBirthday" id="WVz-J0-xj2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addressBookButton" destination="BNg-Ai-aTN" id="rQp-ac-gi4"/>
+                        <outlet property="facebookButton" destination="eTz-44-BbM" id="YSm-qW-FiU"/>
+                        <outlet property="importLabel" destination="ttO-a6-eFZ" id="wcD-8h-cjo"/>
+                        <outlet property="importView" destination="eww-uq-2Os" id="fhy-Ej-h4f"/>
                         <outlet property="tableView" destination="0qE-un-Eo1" id="FXA-Lh-bcW"/>
                         <outlet property="view" destination="0qE-un-Eo1" id="hqY-5w-WRk"/>
                     </connections>
@@ -115,6 +187,7 @@
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" id="xHi-Fn-9jc">
                                 <rect key="frame" x="0.0" y="265" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <date key="date" timeIntervalSinceReferenceDate="459529706.56270498">
                                     <!--2015-07-25 15:08:26 +0000-->
                                 </date>
@@ -184,7 +257,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1876" y="1045"/>
+            <point key="canvasLocation" x="2408" y="1045"/>
         </scene>
         <!--Settings-->
         <scene sceneID="oso-k0-nTC">
@@ -194,18 +267,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hgf-hR-ToL">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hgf-hR-ToL" userLabel="setAlertTime">
                                 <rect key="frame" x="112" y="269" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Set Alert Time">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" cocoaTouchSystemColor="lightTextColor"/>
                                 </state>
                                 <connections>
                                     <segue destination="RmU-Yf-j70" kind="push" id="6k3-bM-fIJ"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="KYi-Qi-Fms">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="hfA-3l-xJ9">
@@ -214,6 +287,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="setAlertTimeButton" destination="hgf-hR-ToL" id="YKf-kt-c6q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dgf-8e-gc0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -227,7 +303,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What time of day do you want your Birthday Reminders?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tCy-T6-kvU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What time of day do you want your Birthday Reminders?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tCy-T6-kvU" userLabel="setAlertTime">
                                 <rect key="frame" x="20" y="80" width="280" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -265,20 +341,119 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FGs-zq-ARp">
-                                <rect key="frame" x="201" y="269" width="72" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Edit Notes">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="4sQ-JN-m8m" kind="modal" identifier="EditNotes" id="JHR-ox-CWP"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="sih-it-aqW">
-                                <rect key="frame" x="10" y="80" width="71" height="71"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="I7Y-3k-iJV">
+                                <rect key="frame" x="0.0" y="67" width="320" height="456"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FGs-zq-ARp" userLabel="Notes button">
+                                        <rect key="frame" x="51" y="91" width="44" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="icon-notes.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="4sQ-JN-m8m" kind="modal" identifier="EditNotes" id="JHR-ox-CWP"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-days-remaining.png" id="AJ1-U3-rSn" userLabel="RemainingDays">
+                                        <rect key="frame" x="260" y="20" width="48" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thumbnail-background.png" id="b3t-d7-Y9u" userLabel="ThumbnailBackground">
+                                        <rect key="frame" x="10" y="20" width="71" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sou-28-fF6" userLabel="Birthday label">
+                                        <rect key="frame" x="89" y="28" width="164" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining day count label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="alh-h0-CKw" userLabel="Remaining day count label">
+                                        <rect key="frame" x="265" y="35" width="37" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining day count sublabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SnF-u6-u4e" userLabel="Remaining day count sublabel">
+                                        <rect key="frame" x="259" y="51" width="51" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bZO-Ao-o5p" userLabel="Notes title label">
+                                        <rect key="frame" x="10" y="102" width="69" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes text label" lineBreakMode="tailTruncation" numberOfLines="100" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eBk-Qy-tJy" userLabel="Notes text label">
+                                        <rect key="frame" x="10" y="133" width="300" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="csH-E7-KFX" userLabel="Facebook button" customClass="BRBlueButton">
+                                        <rect key="frame" x="6" y="156" width="307" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Post on Friend's Wall" image="icon-facebook">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="facebookButtonTapped:" destination="jXV-3L-KK0" eventType="touchUpInside" id="qZh-v6-4EI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wa0-XA-Jvv" userLabel="Call button" customClass="BRBlueButton">
+                                        <rect key="frame" x="6" y="221" width="307" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Call Friend" image="icon-call.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="callButtonTapped:" destination="jXV-3L-KK0" eventType="touchUpInside" id="5bg-yL-uVQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="04I-IA-brE" userLabel="SMS button" customClass="BRBlueButton">
+                                        <rect key="frame" x="6" y="286" width="307" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="SMS Friend" image="icon-sms.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="smsButtonTapped:" destination="jXV-3L-KK0" eventType="touchUpInside" id="Iv9-wq-WfY"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WlB-hA-LlP" userLabel="Email button" customClass="BRBlueButton">
+                                        <rect key="frame" x="6" y="351" width="307" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Email Friend" image="icon-email.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="emailButtonTapped:" destination="jXV-3L-KK0" eventType="touchUpInside" id="z4U-TX-7Mc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="fHL-zt-oI4" userLabel="Delete button" customClass="BRRedButton">
+                                        <rect key="frame" x="6" y="416" width="307" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Delete Friend" image="icon-delete.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteButtonTapped:" destination="jXV-3L-KK0" eventType="touchUpInside" id="Ca5-xB-bKY"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="sih-it-aqW" userLabel="Thumbnail">
+                                        <rect key="frame" x="10" y="20" width="71" height="71"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -290,7 +465,19 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="birthdayLabel" destination="sou-28-fF6" id="PY3-rY-TVY"/>
+                        <outlet property="callButton" destination="wa0-XA-Jvv" id="L8E-bi-uNn"/>
+                        <outlet property="deleteButton" destination="fHL-zt-oI4" id="JeQ-Pg-4PN"/>
+                        <outlet property="emailButton" destination="WlB-hA-LlP" id="YMr-1i-xAp"/>
+                        <outlet property="facebookButton" destination="csH-E7-KFX" id="z3F-qM-0uG"/>
+                        <outlet property="notesTextLabel" destination="eBk-Qy-tJy" id="nPa-3p-c1y"/>
+                        <outlet property="notesTitleLabel" destination="bZO-Ao-o5p" id="4ed-8Y-gcQ"/>
                         <outlet property="photoView" destination="sih-it-aqW" id="YHf-DO-MTo"/>
+                        <outlet property="remainingDaysImageView" destination="AJ1-U3-rSn" id="9n2-eq-xR8"/>
+                        <outlet property="remainingDaysLabel" destination="alh-h0-CKw" id="i8Y-80-s0Q"/>
+                        <outlet property="remainingDaysSubTextLabel" destination="SnF-u6-u4e" id="DQr-e5-H57"/>
+                        <outlet property="scrollVIew" destination="I7Y-3k-iJV" id="80M-8R-jms"/>
+                        <outlet property="smsButton" destination="04I-IA-brE" id="5bn-OH-CXj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNL-QH-kOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -305,11 +492,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="WDy-jV-bNz">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" id="WDy-jV-bNz">
                                 <rect key="frame" x="0.0" y="70" width="320" height="190"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <connections>
                                     <outlet property="delegate" destination="eSI-g8-N7j" id="719-Ev-3Ra"/>
@@ -350,6 +537,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="thE-A6-b76">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -359,6 +547,116 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZTH-bi-iTx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="575" y="334"/>
+        </scene>
+        <!--Address Book-->
+        <scene sceneID="BLl-kI-czS">
+            <objects>
+                <viewController title="Address Book" id="eFl-Fa-rDQ" customClass="BRImportAddressBookViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lGX-wR-Nrw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ct9-qk-HQw">
+                                <rect key="frame" x="0.0" y="64" width="320" height="456"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="A8A-Vd-nWo" userLabel="Birthday Table View Cell" customClass="BRBirthdayTableViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A8A-Vd-nWo" id="YLQ-zn-A7i">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="71.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="JmC-5e-LBr" userLabel="iconView">
+                                                    <rect key="frame" x="11" y="13" width="52" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-days-remaining" id="qGT-Fd-RQl" userLabel="remainingDaysImageView">
+                                                    <rect key="frame" x="260" y="14" width="48" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3tB-h5-OfY">
+                                                    <rect key="frame" x="76" y="22" width="177" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitrhday label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OU0-pa-xMX" userLabel="Birthday label">
+                                                    <rect key="frame" x="76" y="43" width="177" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining days sublabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PYY-Js-m5i" userLabel="Remaining days sublabel">
+                                                    <rect key="frame" x="262" y="45" width="51" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remaining days count label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tTh-EU-2Jm" userLabel="Remaining days count label">
+                                                    <rect key="frame" x="260" y="29" width="48" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="birthdayLabel" destination="OU0-pa-xMX" id="M7E-WZ-WB5"/>
+                                            <outlet property="iconView" destination="JmC-5e-LBr" id="jIS-CE-6K2"/>
+                                            <outlet property="nameLabel" destination="3tB-h5-OfY" id="s4R-Jk-ua3"/>
+                                            <outlet property="remainingDaysImageView" destination="qGT-Fd-RQl" id="bAa-ZA-Nqq"/>
+                                            <outlet property="remainingDaysLabel" destination="tTh-EU-2Jm" id="ajY-EM-pdF"/>
+                                            <outlet property="remainingDaysSubTextLabel" destination="PYY-Js-m5i" id="RSy-qK-1RF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eFl-Fa-rDQ" id="JWy-Wd-Peq"/>
+                                    <outlet property="delegate" destination="eFl-Fa-rDQ" id="h4Z-AJ-5Az"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="A7m-uw-dSu"/>
+                        <barButtonItem title="Select All" id="oC3-kQ-xwM">
+                            <connections>
+                                <action selector="didTapSelectAllButton:" destination="eFl-Fa-rDQ" id="PQ4-f2-t8p"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem title="Select None" id="kKY-el-SQ2">
+                            <connections>
+                                <action selector="didTapSelectNoneButton:" destination="eFl-Fa-rDQ" id="kWC-7o-Ipr"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Address Book" id="Zmw-u0-LEI">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="1R5-44-jT0">
+                            <connections>
+                                <action selector="cancelAndDismiss:" destination="eFl-Fa-rDQ" id="Oe2-uo-SaT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Import" id="UrM-M4-K7y">
+                            <connections>
+                                <action selector="didTapImportButton:" destination="eFl-Fa-rDQ" id="FpC-rx-ai9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="importButton" destination="UrM-M4-K7y" id="lFS-oJ-yPW"/>
+                        <outlet property="tableView" destination="Ct9-qk-HQw" id="IqD-Gj-i4a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fu8-Pt-bec" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1161" y="1091"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GoL-dO-Etg">
@@ -376,7 +674,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CM3-Dw-SUa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1404" y="1045"/>
+            <point key="canvasLocation" x="1936" y="1045"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7JG-Bm-hQv">
@@ -414,17 +712,46 @@
             </objects>
             <point key="canvasLocation" x="1404" y="-345"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="DKT-oG-E0f">
+            <objects>
+                <navigationController storyboardIdentifier="ImportAddressBook" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="TOk-OX-KXQ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vGj-wu-RQB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="9QB-JY-uam">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="eFl-Fa-rDQ" kind="relationship" relationship="rootViewController" id="IPW-VW-Cjt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OiL-cj-8I7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="723" y="1091"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="icon-add-new.png" width="19" height="19"/>
+        <image name="icon-addressbook.png" width="30" height="30"/>
         <image name="icon-birthday-cake.png" width="55" height="55"/>
+        <image name="icon-call.png" width="30" height="30"/>
+        <image name="icon-days-remaining" width="48" height="50"/>
+        <image name="icon-days-remaining.png" width="48" height="50"/>
+        <image name="icon-delete.png" width="30" height="30"/>
+        <image name="icon-email.png" width="30" height="30"/>
+        <image name="icon-facebook" width="30" height="30"/>
+        <image name="icon-facebook.png" width="30" height="30"/>
+        <image name="icon-notes.png" width="22" height="22"/>
+        <image name="icon-settings.png" width="19" height="19"/>
+        <image name="icon-sms.png" width="30" height="30"/>
         <image name="thumbnail-background.png" width="71" height="71"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lmX-mm-dQr"/>
+        <segue reference="WVz-J0-xj2"/>
     </inferredMetricsTieBreakers>
 </document>

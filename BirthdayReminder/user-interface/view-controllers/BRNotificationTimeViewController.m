@@ -7,6 +7,7 @@
 //
 
 #import "BRNotificationTimeViewController.h"
+#import "BRStyleSheet.h"
 
 @interface BRNotificationTimeViewController ()
 
@@ -17,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [BRStyleSheet styleLabel:self.whatTimeLabel withType:BRLabelTypeLarge];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -39,16 +39,15 @@
 
     NSDate *birthdayThisYear = [calendar dateFromComponents:dateComponents];
     
-    if([today compare:birthdayThisYear] == NSOrderedAscending){
+    if([today compare:birthdayThisYear] == NSOrderedDescending){
         //birthday this year has passed so next birthday will be next year
         dateComponents.year++;
         self.nextBirthday = [calendar dateFromComponents:dateComponents];
-        
     }else{
         self.nextBirthday = [birthdayThisYear copy];
     }
     
-    if([self.birthDay intValue] > 0){
+    if([self.birthYear intValue] > 0){
         self.nextBirthdayAge = [NSNumber numberWithInt:dateComponents.year - [self.birthYear intValue]];
     }else{
         self.nextBirthdayAge = [NSNumber numberWithInt:0];
@@ -74,11 +73,12 @@
     NSDateComponents *componentsToday = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
     
     NSDate *today = [calendar dateFromComponents:componentsToday];
+    NSLog(@"today %@ nextBirthday %@",today, self.nextBirthday);
     
     NSTimeInterval timeDiffSecs = [self.nextBirthday timeIntervalSinceDate:today];
     
-    int days = floor(timeDiffSecs/60.f*60.f+24.f);
-    
+    int days = floor(timeDiffSecs/(60.f*60.f*24.f));
+    NSLog(@"remaining days %d",days);
     return days;
 }
 

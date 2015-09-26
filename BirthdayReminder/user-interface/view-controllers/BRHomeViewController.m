@@ -11,10 +11,13 @@
 #import "BRBirthdayEditViewController.h"
 #import "BRDBirthday.h"
 #import "BRDModel.h"
+#import "BRBirthdayTableViewCell.h"
+#import "BRStyleSheet.h"
 
 @interface BRHomeViewController ()
 //Data reference
 @property (nonatomic,strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic) BOOL hasFriends;
 @end
 
 @implementation BRHomeViewController
@@ -22,11 +25,14 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
+    self.hasFriends = [self.fetchedResultsController.fetchedObjects count] > 0;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [BRStyleSheet styleLabel:self.importLabel withType:BRLabelTypeLarge];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +47,8 @@
 - (id) initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     
+    //celebrity birthday data from plist file
+    /*
     if(self) {
         NSString* pListPath = [[NSBundle mainBundle] pathForResource:@"birthdays" ofType:@"plist"];
         NSArray *nonMutableBirthdays = [NSArray arrayWithContentsOfFile:pListPath];
@@ -100,9 +108,19 @@
         }
         [[BRDModel sharedInstance] saveChanges];
     }
+     */
     return self;
 }
 
+-(void) setHasFriends:(BOOL)hasFriends{
+    _hasFriends = hasFriends;
+    self.importView.hidden = _hasFriends;
+    self.tableView.hidden = !_hasFriends;
+    
+    if(self.navigationController.topViewController == self){
+        [self.navigationController setToolbarHidden:!_hasFriends animated:NO];
+    }
+}
 
 #pragma mark UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -110,9 +128,18 @@
     
     BRDBirthday *birthday = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = birthday.name;
-    cell.detailTextLabel.text = birthday.birthdayTextToDisplay;
-    cell.imageView.image = [UIImage imageWithData:birthday.imageData];
+    BRBirthdayTableViewCell *brTableCell = (BRBirthdayTableViewCell *)cell;
+    brTableCell.birthday = birthday;
+    if(birthday.imageData ==nil){
+        brTableCell.iconView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+    }else{
+        brTableCell.iconView.image = [UIImage imageWithData:birthday.imageData];
+    }
+    
+    //set background for the table cell to an image
+    UIImage *backgroundImage = (indexPath.row == 0) ? [UIImage imageNamed:@"table-row-background.png"] : [UIImage imageNamed:@"table-row-icing-background.png"];
+    brTableCell.backgroundView = [[UIImageView alloc] initWithImage:backgroundImage];
+                                                                                                    
     
     return cell;
 }
@@ -196,4 +223,11 @@
     //the fetched results changed
 }
 
+- (IBAction)importFromAddressBookTapped:(id)sender {
+    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"ImportAddressBook"];
+    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (IBAction)importFromFacebookTapped:(id)sender {
+}
 @end

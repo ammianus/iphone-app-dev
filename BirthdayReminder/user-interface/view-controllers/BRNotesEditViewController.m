@@ -9,6 +9,7 @@
 #import "BRNotesEditViewController.h"
 #import "BRDBirthday.h"
 #import "BRDModel.h"
+#import "BRStyleSheet.h"
 
 @interface BRNotesEditViewController ()
 
@@ -21,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [BRStyleSheet styleTextView:self.textView];
 }
 
 - (void)didReceiveMemoryWarning {

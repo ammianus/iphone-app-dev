@@ -9,5 +9,6 @@
 #import "BRCoreViewController.h"
 
 @interface BRSettingsViewController : BRCoreViewController
+@property (weak, nonatomic) IBOutlet UIButton *setAlertTimeButton;
 
 @end

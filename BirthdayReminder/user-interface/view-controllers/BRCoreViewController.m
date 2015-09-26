@@ -20,6 +20,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor grayColor];
+    UIImageView *backgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"app-background.png"]];
+    [self.view insertSubview:backgroundView atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning {

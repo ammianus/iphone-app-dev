@@ -6,6 +6,9 @@
 //  Copyright (c) 2015 project year six. All rights reserved.
 //
 
+#define BRNotificationAddressBookBirthdaysDidUpdate @"BRNotificationAddressBookBirthdaysDidUpdate"
+
+
 #import <Foundation/Foundation.h>
 
 /**
@@ -22,5 +25,6 @@
 -(void)saveChanges;
 -(void)cancelChanges;
 -(NSMutableDictionary *) getExistingBirthdaysWithUIDs:(NSArray *)uids;
-
+-(void)fetchAddressBookBirthdays;
+-(void) importBirthdays:(NSArray *)birthdaysToImport;
 @end

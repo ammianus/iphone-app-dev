@@ -7,12 +7,17 @@
 //
 
 #import "BRAppDelegate.h"
+#import "BRStyleSheet.h"
+
 
 @implementation BRAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    //initialize all of our global custom appearence styles
+    [BRStyleSheet initStyles];
     return YES;
 }
 							

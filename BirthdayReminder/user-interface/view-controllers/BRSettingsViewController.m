@@ -7,6 +7,7 @@
 //
 
 #import "BRSettingsViewController.h"
+#import "BRStyleSheet.h"
 
 @interface BRSettingsViewController ()
 
@@ -17,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //[BRStyleSheet styleLabel: withType:BRLabelTypeLarge];
 }
 
 - (void)didReceiveMemoryWarning {
