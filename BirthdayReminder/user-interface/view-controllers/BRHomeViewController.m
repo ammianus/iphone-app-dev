@@ -130,11 +130,11 @@
     
     BRBirthdayTableViewCell *brTableCell = (BRBirthdayTableViewCell *)cell;
     brTableCell.birthday = birthday;
-    if(birthday.imageData ==nil){
-        brTableCell.iconView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
-    }else{
-        brTableCell.iconView.image = [UIImage imageWithData:birthday.imageData];
-    }
+    //if(birthday.imageData ==nil){
+    //    brTableCell.iconView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+    //}else{
+    //    brTableCell.iconView.image = [UIImage imageWithData:birthday.imageData];
+    //}
     
     //set background for the table cell to an image
     UIImage *backgroundImage = (indexPath.row == 0) ? [UIImage imageNamed:@"table-row-background.png"] : [UIImage imageNamed:@"table-row-icing-background.png"];
@@ -229,5 +229,7 @@
 }
 
 - (IBAction)importFromFacebookTapped:(id)sender {
+    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"ImportFacebook"];
+    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }
 @end

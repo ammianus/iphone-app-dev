@@ -8,6 +8,7 @@
 
 #define BRNotificationAddressBookBirthdaysDidUpdate @"BRNotificationAddressBookBirthdaysDidUpdate"
 
+#define BRNotificationFacebookBirthdaysDidUpdate @"BRNotificationFacebookBirthdaysDidUpdate"
 
 #import <Foundation/Foundation.h>
 
@@ -27,4 +28,6 @@
 -(NSMutableDictionary *) getExistingBirthdaysWithUIDs:(NSArray *)uids;
 -(void)fetchAddressBookBirthdays;
 -(void) importBirthdays:(NSArray *)birthdaysToImport;
+-(void)fetchFacebookBirthdays;
+-(void)postToFacebookWall:(NSString *)message withFacebookId:(NSString *)facebookID;
 @end

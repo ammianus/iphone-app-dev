@@ -11,6 +11,25 @@
 #import <AddressBook/AddressBook.h>
 #import "BRDBirthdayImport.h"
 
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
+
+
+//Facebook Social API
+typedef enum : int {
+    FacebookActionGetFriendsBirthdays = 1,
+    FacebookActionPostToWall
+}FacebookAction;
+
+@interface BRDModel()
+
+@property (strong) ACAccount *facebookAccount;
+@property FacebookAction currentFacebookAction;
+@property (nonatomic,strong) NSString *postToFacebookMessage;
+@property (nonatomic,strong) NSString *postToFacebookID;
+
+@end
+
 @implementation BRDModel
 
 static BRDModel * _sharedInstance = nil;
@@ -304,6 +323,152 @@ static BRDModel * _sharedInstance = nil;
     //save our new and updated changes to the Core Data store
     [self saveChanges];
     
+}
+
+#pragma mark Facebook birthdays
+
+- (void)fetchFacebookBirthdays
+{
+    NSLog(@"fetchFacebookBirthdays");
+    if (self.facebookAccount == nil) {
+        self.currentFacebookAction = FacebookActionGetFriendsBirthdays;
+        [self authenticateWithFacebook];
+        return;
+    }
+    //We've got an authenticated Facebook Account if the code executes here
+    // Facebook graph api documentation
+    // http://developers.facebook.com/docs/reference/api
+    NSURL *requestURL = [NSURL URLWithString:@"https://graph.facebook.com/me/friends"];
+    
+    NSDictionary *params = @{ @"fields" : @"name,id,birthday"};
+    
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodGET URL:requestURL parameters:params];
+    
+    request.account = self.facebookAccount;
+    
+    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error getting my Facebook friend birthdays: %@",error);
+        }
+        else
+        {
+            // Facebook's me/friends Graph API returns a root dictionary
+            NSDictionary *resultD = (NSDictionary *) [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+            NSLog(@"Facebook returned friends: %@",resultD);
+            // with a 'data' key - an array of Facebook friend dictionaries
+            NSArray *birthdayDictionaries = resultD[@"data"];
+            
+            int birthdayCount = [birthdayDictionaries count];
+            NSDictionary *facebookDictionary;
+            
+            NSMutableArray *birthdays = [NSMutableArray array];
+            BRDBirthdayImport *birthday;
+            NSString *birthDateS;
+            
+            for (int i = 0; i < birthdayCount; i++)
+            {
+                facebookDictionary = birthdayDictionaries[i];
+                birthDateS = facebookDictionary[@"birthday"];
+                if (!birthDateS) continue;
+                //create an instance of BRDBirthdayImport
+                NSLog(@"Found a Facebook Birthday: %@",facebookDictionary);
+                birthday = [[BRDBirthdayImport alloc] initWithFacebookDictionary:facebookDictionary];
+                [birthdays addObject: birthday];
+            }
+            
+            //Order the birthdays by name
+            NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+            NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+            [birthdays sortUsingDescriptors:sortDescriptors];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                //update the view on the main thread
+                NSDictionary *userInfo = @{@"birthdays":birthdays};
+                [[NSNotificationCenter defaultCenter] postNotificationName:BRNotificationFacebookBirthdaysDidUpdate object:self userInfo:userInfo];
+            });
+        }
+    }];
+}
+
+- (void)postToFacebookWall:(NSString *)message withFacebookID:(NSString *)facebookID
+{
+    NSLog(@"postToFacebookWall");
+    
+    if (self.facebookAccount == nil) {
+        //We're not authorized yet so store the Facebook message and id and start the authentication flow
+        self.postToFacebookMessage = message;
+        self.postToFacebookID = facebookID;
+        self.currentFacebookAction = FacebookActionPostToWall;
+        [self authenticateWithFacebook];
+        return;
+    }
+    
+    NSLog(@"We're authorized so post to Facebook!");
+    
+    NSDictionary *params = @{@"message":message};
+    
+    //Use the user's Facebook ID to call the post to friend feed Graph API path
+    NSString *postGraphPath = [NSString stringWithFormat:@"https://graph.facebook.com/%@/feed",facebookID];
+    
+    NSURL *requestURL = [NSURL URLWithString:postGraphPath];
+    
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook requestMethod:SLRequestMethodPOST URL:requestURL parameters:params];
+    request.account = self.facebookAccount;
+    
+    [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error posting to Facebook: %@",error);
+        }
+        else
+        {
+            //Facebook returns a dictionary with the id of the new post - this might be useful for other projects
+            NSDictionary *dict = (NSDictionary *) [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+            NSLog(@"Successfully posted to Facebook! Post ID: %@",dict);
+        }
+    }];
+    
+}
+
+
+- (void)authenticateWithFacebook {
+    
+    //Centralized iOS user Twitter, Facebook and Sina Weibo accounts are accessed by apps via the ACAccountStore
+    
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+    
+    ACAccountType *accountTypeFacebook = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    
+    //TODO Replace with your Facebook.com app ID
+    NSDictionary *options = @{ACFacebookAppIdKey: @"125381334264255",
+                              ACFacebookPermissionsKey: @[@"publish_stream",@"friends_birthday"],ACFacebookAudienceKey:ACFacebookAudienceFriends};
+    
+    [accountStore requestAccessToAccountsWithType:accountTypeFacebook options:options completion:^(BOOL granted, NSError *error) {
+        if(granted) {
+            //The completition handler may not fire in the main thread and as we are going to
+            NSLog(@"Facebook Authorized!");
+            NSArray *accounts = [accountStore accountsWithAccountType:accountTypeFacebook];
+            self.facebookAccount = [accounts lastObject];
+            
+            //By checking what Facebook action the user was trying to perform before the authorization process we can complete the Facebook action when the authorization succeeds
+            switch (self.currentFacebookAction) {
+                case FacebookActionGetFriendsBirthdays:
+                    [self fetchFacebookBirthdays];
+                    break;
+                case FacebookActionPostToWall:
+                    //TODO - post to a friend's Facebook Wall
+                    [self postToFacebookWall:self.postToFacebookMessage withFacebookID:self.postToFacebookID];
+                    break;
+            }
+        } else {
+            
+            if ([error code] == ACErrorAccountNotFound) {
+                NSLog(@"No Facebook Account Found");
+            }
+            else {
+                NSLog(@"Facebook SSO Authentication Failed: %@",error);
+            }
+        }
+    }];
 }
 
 @end

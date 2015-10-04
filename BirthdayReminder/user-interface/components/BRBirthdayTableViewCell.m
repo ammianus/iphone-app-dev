@@ -10,6 +10,7 @@
 #import "BRDBirthday.h"
 #import "BRDBirthdayImport.h"
 #import "BRStyleSheet.h"
+#import "UIImageView+RemoteFile.h"
 
 @implementation BRBirthdayTableViewCell
 
@@ -67,6 +68,16 @@
     }
     
     self.birthdayLabel.text = _birthday.birthdayTextToDisplay;
+    
+    if(_birthday.imageData == nil){
+        if([_birthday.picURL length] > 0){
+            [self.iconView setImageWithRemoteFileURL:_birthday.picURL placeHolderImage:[UIImage imageNamed:@"icon-birthday-cake.png"]];
+        }else{
+            self.iconView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+        }
+    }else{
+        self.iconView.image = [UIImage imageWithData:_birthday.imageData];
+    }
 }
 
 -(void) setBirthdayImport:(BRDBirthdayImport *)birthdayImport {
@@ -86,6 +97,16 @@
     }
     
     self.birthdayLabel.text = _birthdayImport.birthdayTextToDisplay;
+    
+    if(_birthdayImport.imageData == nil){
+        if([_birthdayImport.picURL length] > 0){
+            [self.iconView setImageWithRemoteFileURL:birthdayImport.picURL placeHolderImage:[UIImage imageNamed:@"icon-birthday-cake.png"]];
+        }else{
+            self.iconView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+        }
+    }else{
+        self.iconView.image = [UIImage imageWithData:birthdayImport.imageData];
+    }
 }
 
 @end

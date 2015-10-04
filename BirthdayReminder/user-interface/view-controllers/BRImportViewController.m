@@ -73,11 +73,11 @@
     
     brTableCell.birthdayImport = birthdayImport;
     
-    if(birthdayImport.imageData == nil){
-        brTableCell.iconView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
-    }else{
-        brTableCell.iconView.image = [UIImage imageWithData:birthdayImport.imageData];
-    }
+    //if(birthdayImport.imageData == nil){
+    //    brTableCell.iconView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+    //}else{
+    //    brTableCell.iconView.image = [UIImage imageWithData:birthdayImport.imageData];
+    //}
     
     UIImage *backgroundImage = (indexPath.row == 0) ? [UIImage imageNamed:@"table-row-background.png"] : [UIImage imageNamed:@"table-row-icing-background.png"];
     brTableCell.backgroundView = [[UIImageView alloc] initWithImage:backgroundImage];

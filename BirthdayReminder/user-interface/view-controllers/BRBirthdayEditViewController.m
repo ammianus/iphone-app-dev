@@ -11,6 +11,7 @@
 #import "BRDModel.h"
 #import "UIImage+Thumbnail.h"
 #import "BRStyleSheet.h"
+#import "UIImageView+RemoteFile.h"
 
 
 @interface BRBirthdayEditViewController ()
@@ -60,11 +61,15 @@
     self.datePicker.date = [calendar dateFromComponents:components];
     
     if(self.birthday.imageData == nil){
-        self.photoView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+        if([self.birthday.picURL length] > 0){
+            [self.photoView setImageWithRemoteFileURL:self.birthday.picURL placeHolderImage:[UIImage imageNamed:@"icon-birthday-cake.png"]];
+        }else{
+            self.photoView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+        }
     }else{
-        self.photoView.image = [UIImage imageWithData:self.birthday.imageData];
+        self.photoView.image = [UIImage imageWithData:_birthday.imageData];
     }
-    
+
     [self updateSaveButton];
 }
 

@@ -13,7 +13,8 @@
 #import "BRStyleSheet.h"
 #import <AddressBook/AddressBook.h>
 #import "BRDModel.h"
-
+#import "UIImageView+RemoteFile.h"
+#import "BRPostToFacebookWallViewController.h"
 // When overriding UIViewController methods be sure to call the super method
 // implementation to avoid problems at runtime
 @interface BRBirthdayDetailViewController ()
@@ -62,12 +63,14 @@
     NSLog(@"viewWillAppear");
 
     self.title = self.birthday.name;
-    UIImage *image = [UIImage imageWithData:self.birthday.imageData];
-    if(image == nil){
-        //default to birthday cake pic if there's no birthday image
-        self.photoView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+    if(self.birthday.imageData == nil){
+        if([self.birthday.picURL length] > 0){
+            [self.photoView setImageWithRemoteFileURL:self.birthday.picURL placeHolderImage:[UIImage imageNamed:@"icon-birthday-cake.png"]];
+        }else{
+            self.photoView.image = [UIImage imageNamed:@"icon-birthday-cake.png"];
+        }
     }else{
-        self.photoView.image = image;
+        self.photoView.image = [UIImage imageWithData:_birthday.imageData];
     }
     
     int days = self.birthday.remainingDaysUntilNextBirthday;
@@ -206,7 +209,11 @@
 
 
 - (IBAction)facebookButtonTapped:(id)sender {
-    //TODO
+    UINavigationController *navigationController = [self.storyboard instantiateViewControllerWithIdentifier:@"PostToFacebookWall"];
+    BRPostToFacebookWallViewController *facebookWallViewController = (BRPostToFacebookWallViewController *) navigationController.topViewController;
+    facebookWallViewController.facebookID = self.birthday.facebookID;
+    facebookWallViewController.initialPostText = @"Happy Birthday!";
+    [self.navigationController presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (IBAction)callButtonTapped:(id)sender {

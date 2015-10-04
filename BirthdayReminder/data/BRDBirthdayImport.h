@@ -27,6 +27,6 @@
 @property (nonatomic, readonly) BOOL isBirthdayToday;
 
 -(id)initWithAddressBookRecord:(ABRecordRef)addressBookRecord;
-
+-(id)initWithFacebookDictionary:(NSDictionary *)facebookDictionary;
 
 @end

@@ -21,6 +21,11 @@
 		C51CAC9D193AA29D00C49846 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C51CAC9B193AA29D00C49846 /* InfoPlist.strings */; };
 		C51CAC9F193AA29D00C49846 /* BirthdayReminderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C51CAC9E193AA29D00C49846 /* BirthdayReminderTests.m */; };
 		C51CACC0193AA8DB00C49846 /* files in Resources */ = {isa = PBXBuildFile; fileRef = C51CACBF193AA8DB00C49846 /* files */; };
+		C5870DDD1BC14B1400C148CE /* BRImportFacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5870DDC1BC14B1400C148CE /* BRImportFacebookViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C5870DDF1BC14BCB00C148CE /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5870DDE1BC14BCB00C148CE /* Accounts.framework */; };
+		C5870DE11BC14C1300C148CE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5870DE01BC14C1300C148CE /* Social.framework */; };
+		C5870DE71BC1616B00C148CE /* UIImageView+RemoteFile.m in Sources */ = {isa = PBXBuildFile; fileRef = C5870DE61BC1616B00C148CE /* UIImageView+RemoteFile.m */; settings = {ASSET_TAGS = (); }; };
+		C5870DEA1BC17C3600C148CE /* BRPostToFacebookWallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5870DE91BC17C3600C148CE /* BRPostToFacebookWallViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C5996A881BAF25180094860B /* BRImportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5996A871BAF25180094860B /* BRImportViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C5996A8B1BB6D7E70094860B /* BRImportAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5996A8A1BB6D7E70094860B /* BRImportAddressBookViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C5996A8D1BB6D9CB0094860B /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5996A8C1BB6D9CB0094860B /* AddressBook.framework */; };
@@ -72,6 +77,14 @@
 		C51CAC9C193AA29D00C49846 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C51CAC9E193AA29D00C49846 /* BirthdayReminderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BirthdayReminderTests.m; sourceTree = "<group>"; };
 		C51CACBF193AA8DB00C49846 /* files */ = {isa = PBXFileReference; lastKnownFileType = folder; path = files; sourceTree = "<group>"; };
+		C5870DDB1BC14B1400C148CE /* BRImportFacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRImportFacebookViewController.h; sourceTree = "<group>"; };
+		C5870DDC1BC14B1400C148CE /* BRImportFacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRImportFacebookViewController.m; sourceTree = "<group>"; };
+		C5870DDE1BC14BCB00C148CE /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		C5870DE01BC14C1300C148CE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C5870DE51BC1616B00C148CE /* UIImageView+RemoteFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+RemoteFile.h"; path = "categories/UIImageView+RemoteFile.h"; sourceTree = "<group>"; };
+		C5870DE61BC1616B00C148CE /* UIImageView+RemoteFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+RemoteFile.m"; path = "categories/UIImageView+RemoteFile.m"; sourceTree = "<group>"; };
+		C5870DE81BC17C3600C148CE /* BRPostToFacebookWallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRPostToFacebookWallViewController.h; sourceTree = "<group>"; };
+		C5870DE91BC17C3600C148CE /* BRPostToFacebookWallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRPostToFacebookWallViewController.m; sourceTree = "<group>"; };
 		C5996A861BAF25180094860B /* BRImportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRImportViewController.h; sourceTree = "<group>"; };
 		C5996A871BAF25180094860B /* BRImportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRImportViewController.m; sourceTree = "<group>"; };
 		C5996A891BB6D7E70094860B /* BRImportAddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRImportAddressBookViewController.h; sourceTree = "<group>"; };
@@ -120,6 +133,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5870DE11BC14C1300C148CE /* Social.framework in Frameworks */,
+				C5870DDF1BC14BCB00C148CE /* Accounts.framework in Frameworks */,
 				C5996A8D1BB6D9CB0094860B /* AddressBook.framework in Frameworks */,
 				C5DF59031B93BA1E0000A51C /* QuartzCore.framework in Frameworks */,
 				C5DF58E31B92257D0000A51C /* CoreData.framework in Frameworks */,
@@ -156,6 +171,8 @@
 		C51CAC72193AA29D00C49846 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C5870DE01BC14C1300C148CE /* Social.framework */,
+				C5870DDE1BC14BCB00C148CE /* Accounts.framework */,
 				C5996A8C1BB6D9CB0094860B /* AddressBook.framework */,
 				C5DF59021B93BA1E0000A51C /* QuartzCore.framework */,
 				C5DF58E21B92257D0000A51C /* CoreData.framework */,
@@ -245,6 +262,10 @@
 				C5996A871BAF25180094860B /* BRImportViewController.m */,
 				C5996A891BB6D7E70094860B /* BRImportAddressBookViewController.h */,
 				C5996A8A1BB6D7E70094860B /* BRImportAddressBookViewController.m */,
+				C5870DDB1BC14B1400C148CE /* BRImportFacebookViewController.h */,
+				C5870DDC1BC14B1400C148CE /* BRImportFacebookViewController.m */,
+				C5870DE81BC17C3600C148CE /* BRPostToFacebookWallViewController.h */,
+				C5870DE91BC17C3600C148CE /* BRPostToFacebookWallViewController.m */,
 			);
 			path = "view-controllers";
 			sourceTree = "<group>";
@@ -268,6 +289,8 @@
 			children = (
 				C5DF58F81B92607A0000A51C /* UIImage+Thumbnail.h */,
 				C5DF58F91B92607A0000A51C /* UIImage+Thumbnail.m */,
+				C5870DE51BC1616B00C148CE /* UIImageView+RemoteFile.h */,
+				C5870DE61BC1616B00C148CE /* UIImageView+RemoteFile.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -387,7 +410,10 @@
 			files = (
 				C5B6DFE51B5AF9FA009C89E6 /* BRHomeViewController.m in Sources */,
 				C5CC07151BA6173A00F8F8AA /* BRBlueButton.m in Sources */,
+				C5870DEA1BC17C3600C148CE /* BRPostToFacebookWallViewController.m in Sources */,
 				C5B6DFF41B5B1576009C89E6 /* BRSettingsViewController.m in Sources */,
+				C5870DDD1BC14B1400C148CE /* BRImportFacebookViewController.m in Sources */,
+				C5870DE71BC1616B00C148CE /* UIImageView+RemoteFile.m in Sources */,
 				C5DF58FE1B93AAE40000A51C /* BRBirthdayTableViewCell.m in Sources */,
 				C5996A8B1BB6D7E70094860B /* BRImportAddressBookViewController.m in Sources */,
 				C5DF58E71B92263C0000A51C /* BirthdayReminder.xcdatamodeld in Sources */,

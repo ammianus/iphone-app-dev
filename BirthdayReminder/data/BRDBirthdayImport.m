@@ -190,4 +190,31 @@
     return self;
 }
 
+-(id)initWithFacebookDictionary:(NSDictionary *)facebookDictionary{
+    self = [super init];
+    if(self){
+        self.name = [facebookDictionary objectForKey:@"name"];
+        self.uid = [NSString stringWithFormat:@"fb-%@",facebookDictionary[@"id"]];
+        self.facebookID = [NSString stringWithFormat:@"%@",facebookDictionary[@"id"]];
+        
+        //Facebook provides a convenience URL for Facebook profile pics as long as you have the Facebook ID
+        self.picURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large",self.facebookID];
+        
+        //Facebook returns birthdays in string format [month]/[day]/[year]
+        NSString *birthDateString = [facebookDictionary objectForKey:@"birthday"];
+        NSArray *birthdaySegments = [birthDateString componentsSeparatedByString:@"/"];
+        
+        self.birthDay = [NSNumber numberWithInt:[birthdaySegments[1] integerValue]];
+        self.birthMonth = [NSNumber numberWithInt:[birthdaySegments[0] integerValue]];
+        
+        if([birthdaySegments count] > 2) { //includes year
+            self.birthYear = [NSNumber numberWithInt:[birthdaySegments[2] integerValue]];
+        }
+        
+        [self updateNextBirthdayAndAge];
+    }
+    
+    return self;
+}
+
 @end
