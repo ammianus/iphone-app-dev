@@ -10,6 +10,8 @@
 
 #define BRNotificationFacebookBirthdaysDidUpdate @"BRNotificationFacebookBirthdaysDidUpdate"
 
+#define BRNotificationCachedBirthdaysDidUpdate @"BRNotificationCachedBirthdaysDidUpdate"
+
 #import <Foundation/Foundation.h>
 
 /**
@@ -30,4 +32,5 @@
 -(void) importBirthdays:(NSArray *)birthdaysToImport;
 -(void)fetchFacebookBirthdays;
 -(void)postToFacebookWall:(NSString *)message withFacebookId:(NSString *)facebookID;
+-(void) updateCachedBirthdays;
 @end

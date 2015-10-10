@@ -30,12 +30,14 @@
 		C5996A8B1BB6D7E70094860B /* BRImportAddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5996A8A1BB6D7E70094860B /* BRImportAddressBookViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C5996A8D1BB6D9CB0094860B /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5996A8C1BB6D9CB0094860B /* AddressBook.framework */; };
 		C5996A901BB6F7690094860B /* BRDBirthdayImport.m in Sources */ = {isa = PBXBuildFile; fileRef = C5996A8F1BB6F7690094860B /* BRDBirthdayImport.m */; settings = {ASSET_TAGS = (); }; };
+		C5A549A31BC9A7BD00FEBC15 /* BRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A549A21BC9A7BD00FEBC15 /* BRSettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C5A549A61BC9AF3900FEBC15 /* BRDSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A549A51BC9AF3900FEBC15 /* BRDSettings.m */; settings = {ASSET_TAGS = (); }; };
+		C5A549A91BC9BE8A00FEBC15 /* BRDaysBeforeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5A549A81BC9BE8A00FEBC15 /* BRDaysBeforeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		C5B6DFE51B5AF9FA009C89E6 /* BRHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFE41B5AF9FA009C89E6 /* BRHomeViewController.m */; };
 		C5B6DFE81B5AFAA6009C89E6 /* BRBirthdayDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFE71B5AFAA6009C89E6 /* BRBirthdayDetailViewController.m */; };
 		C5B6DFEB1B5B0AA9009C89E6 /* BRBirthdayEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFEA1B5B0AA9009C89E6 /* BRBirthdayEditViewController.m */; };
 		C5B6DFEE1B5B1085009C89E6 /* BRCoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFED1B5B1085009C89E6 /* BRCoreViewController.m */; };
 		C5B6DFF11B5B144A009C89E6 /* BRNotesEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFF01B5B144A009C89E6 /* BRNotesEditViewController.m */; };
-		C5B6DFF41B5B1576009C89E6 /* BRSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFF31B5B1576009C89E6 /* BRSettingsViewController.m */; };
 		C5B6DFF71B5B164C009C89E6 /* BRNotificationTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B6DFF61B5B164C009C89E6 /* BRNotificationTimeViewController.m */; };
 		C5CC07151BA6173A00F8F8AA /* BRBlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CC07141BA6173A00F8F8AA /* BRBlueButton.m */; };
 		C5CC07181BA6176500F8F8AA /* BRRedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C5CC07171BA6176500F8F8AA /* BRRedButton.m */; };
@@ -92,6 +94,12 @@
 		C5996A8C1BB6D9CB0094860B /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		C5996A8E1BB6F7690094860B /* BRDBirthdayImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BRDBirthdayImport.h; path = data/BRDBirthdayImport.h; sourceTree = "<group>"; };
 		C5996A8F1BB6F7690094860B /* BRDBirthdayImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRDBirthdayImport.m; path = data/BRDBirthdayImport.m; sourceTree = "<group>"; };
+		C5A549A11BC9A7BD00FEBC15 /* BRSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSettingsViewController.h; sourceTree = "<group>"; };
+		C5A549A21BC9A7BD00FEBC15 /* BRSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSettingsViewController.m; sourceTree = "<group>"; };
+		C5A549A41BC9AF3900FEBC15 /* BRDSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BRDSettings.h; path = data/BRDSettings.h; sourceTree = "<group>"; };
+		C5A549A51BC9AF3900FEBC15 /* BRDSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BRDSettings.m; path = data/BRDSettings.m; sourceTree = "<group>"; };
+		C5A549A71BC9BE8A00FEBC15 /* BRDaysBeforeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRDaysBeforeViewController.h; sourceTree = "<group>"; };
+		C5A549A81BC9BE8A00FEBC15 /* BRDaysBeforeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRDaysBeforeViewController.m; sourceTree = "<group>"; };
 		C5B17141193AB0DF00CF43AA /* BirthdayReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B6DFDB1B5AF1AF009C89E6 /* BirthdayReminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BirthdayReminderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B6DFE31B5AF9FA009C89E6 /* BRHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRHomeViewController.h; sourceTree = "<group>"; };
@@ -104,8 +112,6 @@
 		C5B6DFED1B5B1085009C89E6 /* BRCoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRCoreViewController.m; sourceTree = "<group>"; };
 		C5B6DFEF1B5B144A009C89E6 /* BRNotesEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRNotesEditViewController.h; sourceTree = "<group>"; };
 		C5B6DFF01B5B144A009C89E6 /* BRNotesEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRNotesEditViewController.m; sourceTree = "<group>"; };
-		C5B6DFF21B5B1576009C89E6 /* BRSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRSettingsViewController.h; sourceTree = "<group>"; };
-		C5B6DFF31B5B1576009C89E6 /* BRSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRSettingsViewController.m; sourceTree = "<group>"; };
 		C5B6DFF51B5B164C009C89E6 /* BRNotificationTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRNotificationTimeViewController.h; sourceTree = "<group>"; };
 		C5B6DFF61B5B164C009C89E6 /* BRNotificationTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRNotificationTimeViewController.m; sourceTree = "<group>"; };
 		C5CC07131BA6173A00F8F8AA /* BRBlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BRBlueButton.h; path = components/BRBlueButton.h; sourceTree = "<group>"; };
@@ -254,8 +260,6 @@
 				C5B6DFED1B5B1085009C89E6 /* BRCoreViewController.m */,
 				C5B6DFEF1B5B144A009C89E6 /* BRNotesEditViewController.h */,
 				C5B6DFF01B5B144A009C89E6 /* BRNotesEditViewController.m */,
-				C5B6DFF21B5B1576009C89E6 /* BRSettingsViewController.h */,
-				C5B6DFF31B5B1576009C89E6 /* BRSettingsViewController.m */,
 				C5B6DFF51B5B164C009C89E6 /* BRNotificationTimeViewController.h */,
 				C5B6DFF61B5B164C009C89E6 /* BRNotificationTimeViewController.m */,
 				C5996A861BAF25180094860B /* BRImportViewController.h */,
@@ -266,6 +270,10 @@
 				C5870DDC1BC14B1400C148CE /* BRImportFacebookViewController.m */,
 				C5870DE81BC17C3600C148CE /* BRPostToFacebookWallViewController.h */,
 				C5870DE91BC17C3600C148CE /* BRPostToFacebookWallViewController.m */,
+				C5A549A11BC9A7BD00FEBC15 /* BRSettingsViewController.h */,
+				C5A549A21BC9A7BD00FEBC15 /* BRSettingsViewController.m */,
+				C5A549A71BC9BE8A00FEBC15 /* BRDaysBeforeViewController.h */,
+				C5A549A81BC9BE8A00FEBC15 /* BRDaysBeforeViewController.m */,
 			);
 			path = "view-controllers";
 			sourceTree = "<group>";
@@ -280,6 +288,8 @@
 				C5DF58F21B9247720000A51C /* BRDModel.m */,
 				C5996A8E1BB6F7690094860B /* BRDBirthdayImport.h */,
 				C5996A8F1BB6F7690094860B /* BRDBirthdayImport.m */,
+				C5A549A41BC9AF3900FEBC15 /* BRDSettings.h */,
+				C5A549A51BC9AF3900FEBC15 /* BRDSettings.m */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -408,15 +418,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5A549A91BC9BE8A00FEBC15 /* BRDaysBeforeViewController.m in Sources */,
 				C5B6DFE51B5AF9FA009C89E6 /* BRHomeViewController.m in Sources */,
 				C5CC07151BA6173A00F8F8AA /* BRBlueButton.m in Sources */,
 				C5870DEA1BC17C3600C148CE /* BRPostToFacebookWallViewController.m in Sources */,
-				C5B6DFF41B5B1576009C89E6 /* BRSettingsViewController.m in Sources */,
 				C5870DDD1BC14B1400C148CE /* BRImportFacebookViewController.m in Sources */,
 				C5870DE71BC1616B00C148CE /* UIImageView+RemoteFile.m in Sources */,
 				C5DF58FE1B93AAE40000A51C /* BRBirthdayTableViewCell.m in Sources */,
 				C5996A8B1BB6D7E70094860B /* BRImportAddressBookViewController.m in Sources */,
 				C5DF58E71B92263C0000A51C /* BirthdayReminder.xcdatamodeld in Sources */,
+				C5A549A31BC9A7BD00FEBC15 /* BRSettingsViewController.m in Sources */,
 				C5B6DFF71B5B164C009C89E6 /* BRNotificationTimeViewController.m in Sources */,
 				C5B6DFEB1B5B0AA9009C89E6 /* BRBirthdayEditViewController.m in Sources */,
 				C5996A881BAF25180094860B /* BRImportViewController.m in Sources */,
@@ -425,6 +436,7 @@
 				C5B6DFE81B5AFAA6009C89E6 /* BRBirthdayDetailViewController.m in Sources */,
 				C5DF58F31B9247720000A51C /* BRDModel.m in Sources */,
 				C5DF58ED1B922B630000A51C /* BRDBirthday.m in Sources */,
+				C5A549A61BC9AF3900FEBC15 /* BRDSettings.m in Sources */,
 				C5B6DFEE1B5B1085009C89E6 /* BRCoreViewController.m in Sources */,
 				C5B6DFF11B5B144A009C89E6 /* BRNotesEditViewController.m in Sources */,
 				C5996A901BB6F7690094860B /* BRDBirthdayImport.m in Sources */,

@@ -2,13 +2,15 @@
 //  BRSettingsViewController.h
 //  BirthdayReminder
 //
-//  Created by Brian Laskey on 7/18/15.
-//  Copyright (c) 2015 project year six. All rights reserved.
+//  Created by Brian Laskey on 10/10/15.
+//  Copyright © 2015 project year six. All rights reserved.
 //
 
-#import "BRCoreViewController.h"
+#import <UIKit/UIKit.h>
 
-@interface BRSettingsViewController : BRCoreViewController
-@property (weak, nonatomic) IBOutlet UIButton *setAlertTimeButton;
+@interface BRSettingsViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UITableViewCell *tableCellDaysBefore;
+@property (weak, nonatomic) IBOutlet UITableViewCell *tableCellNotificationTime;
+- (IBAction)didClickDoneButton:(id)sender;
 
 @end

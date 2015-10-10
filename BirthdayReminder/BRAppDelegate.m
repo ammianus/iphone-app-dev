@@ -8,7 +8,7 @@
 
 #import "BRAppDelegate.h"
 #import "BRStyleSheet.h"
-
+#import "BRDModel.h"
 
 @implementation BRAppDelegate
 
@@ -41,6 +41,12 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    //reset the application badge count
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    //update our database of birthdays if any are out of date (in the past)
+    [[BRDModel sharedInstance] updateCachedBirthdays];
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

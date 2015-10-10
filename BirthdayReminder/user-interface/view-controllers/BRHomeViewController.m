@@ -26,6 +26,18 @@
     [super viewWillAppear:animated];
     [self.tableView reloadData];
     self.hasFriends = [self.fetchedResultsController.fetchedObjects count] > 0;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCachedBirthdaysDidUpdate:) name:BRNotificationCachedBirthdaysDidUpdate object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:BRNotificationCachedBirthdaysDidUpdate object:nil];
+}
+
+
+-(void)handleCachedBirthdaysDidUpdate:(NSNotification *)notification {
+    //if the cache updates simply reload the table view
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad {

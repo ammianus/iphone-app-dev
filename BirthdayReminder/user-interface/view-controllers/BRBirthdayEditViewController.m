@@ -75,6 +75,7 @@
 
 -(IBAction)saveAndDismiss:(id)sender{
     [[BRDModel sharedInstance] saveChanges];
+    [[BRDModel sharedInstance] updateCachedBirthdays];
     [super saveAndDismiss:sender];
 }
 

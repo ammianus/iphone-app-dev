@@ -10,6 +10,7 @@
 #import "BRDBirthday.h"
 #import <AddressBook/AddressBook.h>
 #import "BRDBirthdayImport.h"
+#import "BRDSettings.h"
 
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
@@ -322,7 +323,7 @@ static BRDModel * _sharedInstance = nil;
     
     //save our new and updated changes to the Core Data store
     [self saveChanges];
-    
+    [self updateCachedBirthdays];
 }
 
 #pragma mark Facebook birthdays
@@ -390,7 +391,7 @@ static BRDModel * _sharedInstance = nil;
     }];
 }
 
-- (void)postToFacebookWall:(NSString *)message withFacebookID:(NSString *)facebookID
+-(void)postToFacebookWall:(NSString *)message withFacebookId:(NSString *)facebookID
 {
     NSLog(@"postToFacebookWall");
     
@@ -456,7 +457,7 @@ static BRDModel * _sharedInstance = nil;
                     break;
                 case FacebookActionPostToWall:
                     //TODO - post to a friend's Facebook Wall
-                    [self postToFacebookWall:self.postToFacebookMessage withFacebookID:self.postToFacebookID];
+                    [self postToFacebookWall:self.postToFacebookMessage withFacebookId:self.postToFacebookID];
                     break;
             }
         } else {
@@ -469,6 +470,85 @@ static BRDModel * _sharedInstance = nil;
             }
         }
     }];
+}
+
+-(void)updateCachedBirthdays{
+    NSLog(@"updateCachedBirthdays start");
+    //cancel all previous notifications
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSManagedObjectContext *context = self.managedObjectContext;
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BRDBirthday" inManagedObjectContext:context];
+    fetchRequest.entity = entity;
+    
+    //Fetch all the birthday entities in order of next birthday
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nextBirthday" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor,nil];
+    fetchRequest.sortDescriptors = sortDescriptors;
+    
+    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:nil];
+    
+    NSError *error = nil;
+    if(![fetchedResultsController performFetch:&error]){
+        NSLog(@"Unresolved error %@, %@",error, [error userInfo]);
+        abort();
+    }
+    
+    NSArray *fetchedObjects = fetchedResultsController.fetchedObjects;
+    NSInteger resultCount = [fetchedObjects count];
+    
+    BRDBirthday *birthday;
+    
+    NSDate *now = [NSDate date];
+    NSDateComponents *dateComponentsToday = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    //create a date with time 00:00 today
+    NSDate *today = [[NSCalendar currentCalendar] dateFromComponents:dateComponentsToday];
+    
+    UILocalNotification *reminderNotification;
+    int scheduled = 0;
+    NSDate *fireDate;
+    
+    for(int i = 0; i < resultCount; i++){
+        birthday = (BRDBirthday *) fetchedObjects[i];
+        //if next birthday has past then we'll need to update the birthday entity
+        if([today compare:birthday.nextBirthday] == NSOrderedDescending){
+            //next birthday is now incorrect and is in the past
+            [birthday updateNextBirthdayAndAge];
+        }
+        
+        if(scheduled < 20) {
+            //get the scheduled reminder date for this birthday from settings
+            fireDate = [[BRDSettings sharedInstance] reminderDateForNextBirthday:birthday.nextBirthday];
+            if([now compare:fireDate] != NSOrderedAscending) {
+                //this reminder was for today but the reminder time has nw passed - don't schedule a reminder!
+            }
+            else{
+                //create new local notification to schedule
+                reminderNotification = [[UILocalNotification alloc] init];
+                //set the schedule reminder date
+                reminderNotification.fireDate = fireDate;
+                reminderNotification.timeZone = [NSTimeZone defaultTimeZone];
+                reminderNotification.alertAction = @"View Birthdays";
+                reminderNotification.alertBody = [[BRDSettings sharedInstance] reminderTextForNextBirthday:birthday];
+                //play a custom sound with a local notification
+                reminderNotification.soundName = @"HappyBirthday.m4a";
+                //update the badge count on the Birthday reminder icon
+                reminderNotification.applicationIconBadgeNumber = 1;
+                //schedule the notification!
+                [[UIApplication sharedApplication] scheduleLocalNotification:reminderNotification];
+                scheduled++;
+            }
+        }
+    }
+    
+    [self saveChanges];
+    
+    //let any observer's know that the birthdays in our database have been updated
+    [[NSNotificationCenter defaultCenter] postNotificationName:BRNotificationCachedBirthdaysDidUpdate object:self userInfo:nil];
+
 }
 
 @end

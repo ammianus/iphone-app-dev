@@ -8,6 +8,7 @@
 
 #import "BRNotificationTimeViewController.h"
 #import "BRStyleSheet.h"
+#import "BRDSettings.h"
 
 @interface BRNotificationTimeViewController ()
 
@@ -19,6 +20,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [BRStyleSheet styleLabel:self.whatTimeLabel withType:BRLabelTypeLarge];
+    //Thanks IOS7 default behavior is the date picker has transparent background and dark text
+    self.timePicker.backgroundColor = [UIColor whiteColor];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    //retrieve the stored user settings for notification hour and minute
+    int hour = [BRDSettings sharedInstance].notificationHour;
+    int minute = [BRDSettings sharedInstance].notificationMinute;
+    
+    //Use NSDateComponents to create today's date with the hour/minute stored user notification settings
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:[NSDate date]];
+    
+    components.hour = hour;
+    components.minute = minute;
+    
+    NSDate * date = [[NSCalendar currentCalendar] dateFromComponents:components];
+    
+    self.timePicker.date = date;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +66,8 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit|NSMinuteCalendarUnit fromDate:self.timePicker.date];
     
     NSLog(@"Changed time to %d:%d",components.hour,components.minute);
-    
+    [BRDSettings sharedInstance].notificationHour = components.hour;
+    [BRDSettings sharedInstance].notificationMinute = components.minute;
     
     
 }

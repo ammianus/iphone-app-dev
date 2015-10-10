@@ -2,11 +2,13 @@
 //  BRSettingsViewController.m
 //  BirthdayReminder
 //
-//  Created by Brian Laskey on 7/18/15.
-//  Copyright (c) 2015 project year six. All rights reserved.
+//  Created by Brian Laskey on 10/10/15.
+//  Copyright © 2015 project year six. All rights reserved.
 //
 
 #import "BRSettingsViewController.h"
+#import "BRDSettings.h"
+#import "BRDModel.h"
 #import "BRStyleSheet.h"
 
 @interface BRSettingsViewController ()
@@ -15,25 +17,40 @@
 
 @implementation BRSettingsViewController
 
-- (void)viewDidLoad {
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    self.tableCellNotificationTime.detailTextLabel.text = [[BRDSettings sharedInstance] titleForNotificationTime];
+    self.tableCellDaysBefore.detailTextLabel.text = [[BRDSettings sharedInstance] titleForDaysBefore:[BRDSettings sharedInstance].daysBefore];
+}
+
+-(void) viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    //[BRStyleSheet styleLabel: withType:BRLabelTypeLarge];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"app-background.png"]];
+    self.tableView.backgroundView = backgroundView;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)didClickDoneButton:(id)sender {
+    [[BRDModel sharedInstance] updateCachedBirthdays];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(UIView *) createSectionHeaderWithLabel:(NSString *)text {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40.f)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10.f,15.f, 300.f, 20.f)];
+    label.backgroundColor = [UIColor clearColor];
+    [BRStyleSheet styleLabel:label withType:BRLabelTypeLarge];
+    label.text = text;
+    [view addSubview:label];
+    return view;
 }
-*/
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 40.f;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [self createSectionHeaderWithLabel:@"Reminders"];
+}
 
 @end
