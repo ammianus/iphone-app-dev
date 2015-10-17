@@ -10,6 +10,8 @@
 #import "BRDSettings.h"
 #import "BRDModel.h"
 #import "BRStyleSheet.h"
+#import "Appirater.h"
+#import <Social/Social.h>
 
 @interface BRSettingsViewController ()
 
@@ -50,7 +52,48 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [self createSectionHeaderWithLabel:@"Reminders"];
+    return section == 0 ? [self createSectionHeaderWithLabel:@"Reminders"] : [self createSectionHeaderWithLabel:@"Share the Love"];
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSLog(@"didSelectRowAtIndexPath %d,%d",indexPath.section,indexPath.row);
+    
+    //ignore if the user tapped the Day Before or Alert Time table cells
+    if(indexPath.section == 0){
+        NSLog(@"Return section 0 selected");
+        return;
+    }
+    
+    NSString *text = @"Check out this iPhone App: Birthday Reminder";
+    UIImage *image = [UIImage imageNamed:@"icon300x300.png"];
+    NSURL *facebookPageLink = [NSURL URLWithString:@"http://www.facebook.com/apps/application.php?id=123956661050729"];
+    NSURL *appStoreLink = [NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=489537509&mt=8"];
+    
+    
+    //we'll start a switch statement so that we can cater for future row taps in the project
+    switch (indexPath.row) {
+        case 0: { //Add an App Store Review!
+            NSLog(@"switch case 1");
+            [Appirater rateApp];
+            break;
+        }
+        case 1: {//Share!
+            NSLog(@"switch case 0");
+            NSArray *activityItems = @[text,image,appStoreLink];
+            
+            //seems like this behaves differently than described in the book...
+            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
+            activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeSaveToCameraRoll,UIActivityTypeAssignToContact,UIActivityTypeAddToReadingList];
+            [self presentViewController:activityViewController animated:YES completion:nil];
+            
+            break;
+        }
+        default:
+            NSLog(@"switch default");
+            break;
+    }
+
 }
 
 @end

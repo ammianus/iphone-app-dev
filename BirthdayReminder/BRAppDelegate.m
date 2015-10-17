@@ -9,6 +9,7 @@
 #import "BRAppDelegate.h"
 #import "BRStyleSheet.h"
 #import "BRDModel.h"
+#import "Appirater.h"
 
 @implementation BRAppDelegate
 
@@ -18,6 +19,17 @@
     
     //initialize all of our global custom appearence styles
     [BRStyleSheet initStyles];
+    
+    //Appirater 3rd-party library
+    [Appirater appLaunched:YES];
+    //Appirater config
+    [Appirater setAppId:@"552035781"];
+    [Appirater setDaysUntilPrompt:7];
+    [Appirater setUsesUntilPrompt:5];
+    [Appirater setSignificantEventsUntilPrompt:-1];
+    [Appirater setTimeBeforeReminding:2];
+    [Appirater setDebug:NO];
+    
     //on iOS 8+ also need to registryUserNotificationSettings
     [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound categories:nil]];
     return YES;
@@ -38,6 +50,8 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [Appirater appEnteredForeground:YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
