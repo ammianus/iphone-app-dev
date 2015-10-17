@@ -12,6 +12,7 @@
 #import "BRStyleSheet.h"
 #import "Appirater.h"
 #import <Social/Social.h>
+#import <MessageUI/MessageUI.h>
 
 @interface BRSettingsViewController ()
 
@@ -70,30 +71,131 @@
     NSURL *facebookPageLink = [NSURL URLWithString:@"http://www.facebook.com/apps/application.php?id=123956661050729"];
     NSURL *appStoreLink = [NSURL URLWithString:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=489537509&mt=8"];
     
+    SLComposeViewController *composeViewController;
     
     //we'll start a switch statement so that we can cater for future row taps in the project
     switch (indexPath.row) {
         case 0: { //Add an App Store Review!
-            NSLog(@"switch case 1");
+            NSLog(@"switch case 0 - Appirater");
             [Appirater rateApp];
             break;
         }
-        case 1: {//Share!
-            NSLog(@"switch case 0");
-            NSArray *activityItems = @[text,image,appStoreLink];
-            
-            //seems like this behaves differently than described in the book...
-            UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:activityItems applicationActivities:nil];
-            activityViewController.excludedActivityTypes = @[UIActivityTypePostToWeibo,UIActivityTypePrint,UIActivityTypeCopyToPasteboard,UIActivityTypeSaveToCameraRoll,UIActivityTypeAssignToContact,UIActivityTypeAddToReadingList];
-            [self presentViewController:activityViewController animated:YES completion:nil];
+        case 1: {//Share on Facebook
+            NSLog(@"switch case 1 - Share on Facebook");
+            if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]){
+                NSLog(@"No Facebook Account available for user");
+                return;
+            }
+            composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            [composeViewController addImage:image];
+            [composeViewController setInitialText:text];
+            [composeViewController addURL:appStoreLink];
+            [self presentViewController:composeViewController animated:YES completion:nil];
             
             break;
+        }
+        case 2: { //Like on Facebook
+            NSLog(@"switch case 2 - Like on Facebook");
+            [[UIApplication sharedApplication] openURL:facebookPageLink];
+            break;
+        }
+        case 3: { //Share on Twitter
+            NSLog(@"switch case 3 - Share on Twitter");
+            if(![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]){
+                NSLog(@"No Twitter Account available for user");
+                return;
+            }
+            composeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+            [composeViewController addImage:image];
+            [composeViewController setInitialText:text];
+            [composeViewController addURL:appStoreLink];
+            [self presentViewController:composeViewController animated:YES completion:nil];
+            
+            break;
+        }
+        case 4:{ // Email a Friend
+            NSLog(@"switch case 4 - Share on email");
+            if(![MFMailComposeViewController canSendMail]){
+                NSLog(@"Can't send email");
+                return;
+            }
+            
+            MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
+            
+            //when adding attachments we have to convert the image into it's raw NSData representation
+            [mailViewController addAttachmentData:UIImagePNGRepresentation(image) mimeType:@"image/png" fileName:@"pic.png"];
+            [mailViewController setSubject:@"Birthday Reminder"];
+            
+            //Combine the text and the app store link to create the email body
+            NSString *textWithLink = [NSString stringWithFormat:@"%@\n\n%@",text,appStoreLink];
+            
+            [mailViewController setMessageBody:textWithLink isHTML:NO];
+            mailViewController.mailComposeDelegate = self;
+            [self presentViewController:mailViewController animated:YES completion:nil];
+        }
+        case 5:{ // SMS a Friend
+            NSLog(@"switch case 5 - Share on SMS");
+            if(![MFMessageComposeViewController canSendText]){
+                NSLog(@"Can't send SMS messages");
+                return;
+            }
+            
+            MFMessageComposeViewController *messageViewController = [[MFMessageComposeViewController alloc] init];
+            
+            //Combine the text and the app store link to create the email body
+            NSString *textWithLink = [NSString stringWithFormat:@"%@\n\n%@",text,appStoreLink];
+            
+            [messageViewController setBody:textWithLink];
+            messageViewController.messageComposeDelegate = self;
+            [self presentViewController:messageViewController animated:YES completion:nil];
         }
         default:
             NSLog(@"switch default");
             break;
     }
 
+}
+
+#pragma mark MFMailComposeViewControllerDelegate
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            NSLog(@"mail composer cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"mail composer saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"mail composer sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"mail composer failed");
+            break;
+        default:
+            break;
+    }
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark MFMessageComposeViewControllerDelegate
+
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
+    switch (result) {
+        case MessageComposeResultCancelled:
+            NSLog(@"message composer cancelled");
+            break;
+        case MessageComposeResultFailed:
+            NSLog(@"message composer failed");
+            break;
+        case MessageComposeResultSent:
+            NSLog(@"message composer sent");
+            break;
+        default:
+            break;
+    }
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

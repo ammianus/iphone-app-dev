@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
-@interface BRSettingsViewController : UITableViewController
+@interface BRSettingsViewController : UITableViewController <MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableViewCell *tableCellDaysBefore;
 @property (weak, nonatomic) IBOutlet UITableViewCell *tableCellNotificationTime;
 - (IBAction)didClickDoneButton:(id)sender;
